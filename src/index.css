@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Brand tokens. Change fonts, colours and CSS transition feel here.
+   Fonts must also be loaded in index.html (Google Fonts <link>).
+   Colours are RGB triplets so Tailwind can apply opacity to them.
+------------------------------------------------------------------- */
+:root {
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-olive: 79 91 49; /* #4F5B31 Royal Olive */
+  --color-olive-deep: 43 51 25; /* #2B3319 Deep Heritage Olive */
+  --color-gold: 200 155 60; /* #C89B3C Sculpted Royal Gold */
+  --color-champagne: 229 197 114; /* #E5C572 Champagne Gold */
+  --color-ivory: 249 247 242; /* #F9F7F2 Editorial Ivory */
+  --color-stone: 239 236 228; /* #EFECE4 Warm Stone */
+  --color-ink: 26 28 22; /* #1A1C16 Deep Charcoal Ink */
+  --color-slate: 85 89 75; /* #55594B Muted Olive-Slate */
+  --color-tier-diamond: 190 203 199; /* cool pearl accent for the Diamond décor tier */
+  --color-tier-platinum: 150 154 144; /* soft platinum accent for the Platinum décor tier */
+
+  --hairline-light: rgba(79, 91, 49, 0.16);
+  --hairline-dark: rgba(200, 155, 60, 0.25);
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-base: 400ms;
+  --duration-slow: 900ms;
+
+  --radius-media: 3px;
+  --header-height: 4.75rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-height) + 1.5rem);
+  }
+
+  body {
+    @apply bg-ivory font-sans text-slate antialiased;
+    font-size: 1rem;
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+    /* Lining numerals keep phone numbers, postcodes and capacities clear in the serif face. */
+    font-feature-settings: "lnum" 1, "kern" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-medium text-ink;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Grid children may shrink below their content width, so scrollable rows never widen the page. */
+  :where(.grid) > * {
+    min-width: 0;
+  }
+
+  ::selection {
+    background: rgb(var(--color-gold) / 0.35);
+    color: rgb(var(--color-ink));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-gold));
+    outline-offset: 3px;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-pad {
+    @apply py-20 sm:py-24 lg:py-32;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.6875rem] font-semibold uppercase tracking-eyebrow;
+  }
+
+  .display-xl {
+    @apply font-display text-[2.75rem] font-medium leading-[1.02] tracking-[-0.01em] sm:text-6xl lg:text-7xl xl:text-[5.25rem];
+  }
+
+  .display-lg {
+    @apply font-display text-4xl font-medium leading-[1.06] tracking-[-0.01em] sm:text-5xl lg:text-6xl;
+  }
+
+  .display-md {
+    @apply font-display text-3xl font-medium leading-[1.1] sm:text-4xl lg:text-[2.75rem];
+  }
+
+  .display-sm {
+    @apply font-display text-2xl font-medium leading-[1.15] sm:text-[1.75rem];
+  }
+
+  .lead {
+    @apply text-base leading-relaxed sm:text-lg;
+  }
+
+  .hairline-t {
+    border-top: 1px solid var(--hairline-light);
+  }
+
+  .hairline-t-gold {
+    border-top: 1px solid var(--hairline-dark);
+  }
+
+  .field-label {
+    @apply mb-2 block text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-ink;
+  }
+
+  .field-input {
+    @apply block w-full appearance-none rounded-none border-0 border-b bg-transparent px-0 py-2.5 font-sans text-base text-ink placeholder:text-slate/50;
+    border-bottom-color: rgba(79, 91, 49, 0.35);
+    transition: border-color var(--duration-base) var(--ease-editorial);
+  }
+
+  .field-input:hover {
+    border-bottom-color: rgb(var(--color-olive));
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-bottom-color: rgb(var(--color-gold));
+    box-shadow: 0 1px 0 0 rgb(var(--color-gold));
+  }
+
+  .field-input[aria-invalid="true"] {
+    border-bottom-color: #a4372a;
+    box-shadow: 0 1px 0 0 #a4372a;
+  }
+
+  select.field-input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%234F5B31' stroke-width='1.4'/%3E%3C/svg%3E");
+    background-position: right 0.25rem center;
+    background-repeat: no-repeat;
+    padding-right: 1.75rem;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .text-shadow-soft {
+    text-shadow: 0 1px 24px rgb(var(--color-ink) / 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

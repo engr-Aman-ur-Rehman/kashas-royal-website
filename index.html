@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#2B3319" />
+
+    <title>Kashas Royal | Banqueting &amp; Event Venue in Romford</title>
+    <meta
+      name="description"
+      content="Kashas Royal is a customisable banqueting hall in Romford for up to 400 guests. Weddings, private celebrations and corporate events with in-house catering, décor packages and flexible dry hire."
+    />
+
+    <meta property="og:site_name" content="Kashas Royal" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:title" content="Kashas Royal | Banqueting &amp; Event Venue in Romford" />
+    <meta
+      property="og:description"
+      content="A royal canvas for extraordinary celebrations. Romford's customisable banqueting hall for up to 400 guests."
+    />
+    <meta property="og:image" content="/images/kashas-royal-logo.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!--
+      FONTS: to change typefaces, swap the families in this Google Fonts link
+      and update --font-display / --font-sans at the top of src/index.css.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EventVenue",
+        "name": "Kashas Royal",
+        "slogan": "Catering • Venue • Decor",
+        "description": "Banqueting and event venue in Romford for weddings, private celebrations and corporate events.",
+        "telephone": "+447475515813",
+        "image": "/images/kashas-royal-logo.jpg",
+        "maximumAttendeeCapacity": 400,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "12 Bridge Close",
+          "addressLocality": "Romford",
+          "addressRegion": "Greater London",
+          "postalCode": "RM7 0AU",
+          "addressCountry": "GB"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "11:00",
+          "closes": "23:59"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!--
+      NETLIFY FORMS: static mirror of the React enquiry form.
+      Netlify's build bots read this hidden form to register "venue-enquiry".
+      Keep every `name` here identical to the fields in
+      src/components/enquire/EnquiryForm.tsx.
+    -->
+    <form name="venue-enquiry" method="POST" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="venue-enquiry" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <select name="event-type"></select>
+      <select name="package"></select>
+      <select name="session"></select>
+      <input type="date" name="event-date" />
+      <input type="number" name="guests" />
+      <input type="text" name="add-ons" />
+      <textarea name="message"></textarea>
+      <input type="text" name="consent" />
+    </form>
+
+    <div id="root"></div>
+    <noscript>
+      <p style="padding: 2rem; font-family: Georgia, serif">
+        Kashas Royal, 12 Bridge Close, Romford, RM7 0AU. Please enable JavaScript to view this website, or call
+        <a href="tel:+447475515813">07475 515813</a>.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
