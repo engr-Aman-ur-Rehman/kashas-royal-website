@@ -5,9 +5,10 @@ import { LogoFull } from "@/components/ui/Logo";
 import { usePrivacy } from "@/context/PrivacyContext";
 import PreFooterCta from "./PreFooterCta";
 
-const headingClass = "eyebrow text-gold-champagne";
+const headingClass =
+  "font-condensed-label text-[1.125rem] font-bold uppercase tracking-[0.06em] text-gold-champagne";
 const linkClass =
-  "text-sm text-ivory/75 transition-colors duration-base ease-editorial hover:text-gold-champagne";
+  "link-sweep inline-flex text-[0.9375rem] text-ivory/80 transition-colors duration-base ease-editorial hover:text-gold-champagne";
 
 /**
  * Global footer. This is the ONLY component that renders the email address

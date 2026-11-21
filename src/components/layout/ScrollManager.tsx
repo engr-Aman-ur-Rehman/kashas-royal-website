@@ -1,22 +1,25 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { scrollToElementSmooth, scrollToTopImmediate, useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 /**
- * Scrolls to the top on every route change. If the URL carries a #hash, the
- * matching section is scrolled into view instead.
+ * Initialises desktop smooth scrolling (Lenis) and scrolls cleanly on every
+ * route or #hash navigation.
  */
 export default function ScrollManager() {
   const { pathname, hash } = useLocation();
+  useSmoothScroll();
 
   useEffect(() => {
     if (!hash) {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      scrollToTopImmediate();
       return;
     }
     const id = decodeURIComponent(hash.slice(1));
     const timer = window.setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 80);
+      const target = document.getElementById(id);
+      if (target) scrollToElementSmooth(target);
+    }, 90);
     return () => window.clearTimeout(timer);
   }, [pathname, hash]);
 

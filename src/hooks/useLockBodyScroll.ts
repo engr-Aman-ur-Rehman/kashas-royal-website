@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { pauseSmoothScroll, resumeSmoothScroll } from "./useSmoothScroll";
 
 /** Prevents the page behind an overlay from scrolling while `locked` is true. */
 export function useLockBodyScroll(locked: boolean) {
@@ -10,9 +11,11 @@ export function useLockBodyScroll(locked: boolean) {
     const previousPadding = body.style.paddingRight;
     body.style.overflow = "hidden";
     if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`;
+    pauseSmoothScroll();
     return () => {
       body.style.overflow = previousOverflow;
       body.style.paddingRight = previousPadding;
+      resumeSmoothScroll();
     };
   }, [locked]);
 }

@@ -80,12 +80,12 @@ The favicon files are `public/favicon.png` and `public/apple-touch-icon.png`.
 
 **Fonts** are set in two places:
 
-- `index.html`: the Google Fonts `<link>` chooses which families and weights load.
-- `src/index.css`: `--font-display` (headings, Cormorant Garamond) and `--font-sans` (body, Plus Jakarta Sans) at the top of the file.
+- `index.html`: the Google Fonts `<link>` loads the `Bricolage Grotesque` variable family (`opsz`, `wdth`, `wght`).
+- `src/index.css`: `--font-display` (Condensed Light `wdth: 75`, `wght: 280`) and `--font-sans` (`Bricolage Grotesque` Regular/Medium) at the top of the file.
 
-Change both together. Brand colours are in the same block of `src/index.css`.
+Change both together. Brand colours, card radii (`10px`) and transition timings (`300ms` / `500ms` / `900ms` / `1200ms`) are in the same block of `src/index.css`.
 
-**Transitions** are in `src/config/motion.ts`: easing curves, durations, stagger timings, and the presets used for scroll reveals, tab changes, the mobile menu, modals and accordions. Hover transitions on links and buttons use `--ease-editorial`, `--duration-base` and `--duration-slow` in `src/index.css`. Visitors who have "reduce motion" switched on in their device settings automatically get a calmer version.
+**Transitions** are in `src/config/motion.ts` (GSAP `circ.out` 1.2s word reveals, `0.5s ease-in-out` card/hover glides, `0.05s` word stagger), with desktop smooth wheel scrolling via Lenis in `src/hooks/useSmoothScroll.ts`. Hover transitions on links, cards and buttons use `--ease-editorial`, `--duration-fast`, `--duration-base` and `--duration-slow` in `src/index.css`. Visitors who have "reduce motion" switched on in their device settings automatically get a calmer version.
 
 ## 4. Deploying to Netlify
 

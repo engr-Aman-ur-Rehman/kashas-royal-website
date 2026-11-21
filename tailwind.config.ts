@@ -38,16 +38,21 @@ export default {
         sans: ["var(--font-sans)"],
       },
       letterSpacing: {
-        eyebrow: "0.2em",
+        eyebrow: "0.14em",
       },
       transitionTimingFunction: {
         editorial: "var(--ease-editorial)",
+        "circ-out": "var(--ease-circ-out)",
       },
       transitionDuration: {
+        fast: "var(--duration-fast)",
         base: "var(--duration-base)",
         slow: "var(--duration-slow)",
+        reveal: "var(--duration-reveal)",
       },
       borderRadius: {
+        btn: "var(--radius-btn)",
+        card: "var(--radius-card)",
         media: "var(--radius-media)",
       },
       maxWidth: {

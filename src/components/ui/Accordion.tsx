@@ -17,7 +17,12 @@ interface AccordionProps {
   headingLevel?: "h3" | "h4";
 }
 
-/** Accessible single-open accordion (button + region pattern). */
+/**
+ * Accessible single-open accordion styled after 8 Northumberland Avenue's
+ * `.accordion-single`: clean hairline rules, Bricolage Grotesque questions,
+ * and a circular `+` trigger that fills dark & inverts on hover (500ms
+ * ease-in-out) and rotates 45° when expanded.
+ */
 export default function Accordion({ items, defaultOpenId, headingLevel: Heading = "h3" }: AccordionProps) {
   const baseId = useId();
   const [openId, setOpenId] = useState<string | null>(defaultOpenId ?? null);
@@ -30,31 +35,31 @@ export default function Accordion({ items, defaultOpenId, headingLevel: Heading 
         const panelId = `${baseId}-${item.id}-panel`;
         return (
           <div key={item.id} className="border-t border-hairline">
-            <Heading className="font-sans">
+            <Heading className="font-sans font-body-width">
               <button
                 type="button"
                 id={buttonId}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenId(isOpen ? null : item.id)}
-                className="group flex w-full items-center justify-between gap-6 py-6 text-left"
+                className="group flex w-full items-center justify-between gap-6 py-7 text-left"
               >
                 <span
-                  className={`font-display text-xl font-medium leading-snug transition-colors duration-base ease-editorial sm:text-2xl ${
-                    isOpen ? "text-olive" : "text-ink group-hover:text-olive"
+                  className={`font-sans font-body-width text-[1.0625rem] font-normal leading-[1.35] transition-colors duration-base ease-editorial sm:text-[1.25rem] ${
+                    isOpen ? "text-olive-deep" : "text-ink group-hover:text-olive"
                   }`}
                 >
                   {item.question}
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-all duration-base ease-editorial ${
+                  className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border transition-all duration-base ease-editorial ${
                     isOpen
-                      ? "rotate-45 border-gold bg-gold text-ink"
-                      : "border-olive/35 text-olive group-hover:border-olive"
+                      ? "rotate-45 border-olive-deep bg-olive-deep text-ivory"
+                      : "border-olive-deep/60 bg-transparent text-olive-deep group-hover:border-olive-deep group-hover:bg-olive-deep group-hover:text-ivory"
                   }`}
                 >
-                  <Plus size={16} strokeWidth={1.5} />
+                  <Plus size={15} strokeWidth={1.6} />
                 </span>
               </button>
             </Heading>
@@ -70,7 +75,7 @@ export default function Accordion({ items, defaultOpenId, headingLevel: Heading 
                   exit="collapsed"
                   className="overflow-hidden"
                 >
-                  <div className="max-w-2xl space-y-3 pb-7 pr-12 text-[0.9375rem] leading-relaxed">
+                  <div className="max-w-[34rem] space-y-3 pb-8 pr-10 text-[1rem] leading-[1.55] text-slate">
                     {item.answer.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}

@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { useRef, type ReactNode } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { MediaImage } from "@/data/media";
 import { fadeUp, staggerContainer } from "@/config/motion";
 import SmartImage from "./SmartImage";
@@ -14,20 +14,39 @@ interface PageHeroProps {
   children?: ReactNode;
 }
 
-/** Inner-page hero: headline anchored bottom-left over a dark olive-charcoal wash. */
+/**
+ * Inner-page hero with subtle scroll-linked parallax backdrop (echoing
+ * 8 Northumberland Avenue's `.innerpage-hero .parallax-bg`) and condensed
+ * Bricolage Grotesque Light display heading.
+ */
 export default function PageHero({ eyebrow, title, intro, image, compact = false, children }: PageHeroProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.07]);
+
   return (
     <section
+      ref={sectionRef}
       className={`relative isolate flex items-end overflow-hidden bg-olive-deep ${
-        compact ? "min-h-[26rem] lg:min-h-[30rem]" : "min-h-[32rem] sm:min-h-[36rem] lg:min-h-[72vh]"
+        compact ? "min-h-[26rem] lg:min-h-[30rem]" : "min-h-[32rem] sm:min-h-[38rem] lg:min-h-[76svh]"
       }`}
     >
       {image ? (
         <>
-          <SmartImage image={image} priority alt="" className="!absolute inset-0 -z-20 !bg-olive-deep" />
+          <motion.div
+            style={reduceMotion ? undefined : { y: bgY, scale: bgScale }}
+            className="pointer-events-none absolute -inset-y-8 inset-x-0 -z-20 will-change-transform"
+          >
+            <SmartImage image={image} priority alt="" className="h-full w-full !bg-olive-deep" />
+          </motion.div>
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-gradient-to-t from-olive-deep via-olive-deep/65 to-ink/55"
+            className="absolute inset-0 -z-10 bg-gradient-to-t from-olive-deep via-olive-deep/60 to-ink/45"
           />
           <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/55 via-transparent to-transparent" />
         </>
@@ -39,7 +58,7 @@ export default function PageHero({ eyebrow, title, intro, image, compact = false
       )}
 
       <motion.div
-        className="container-site pb-14 pt-40 sm:pb-16 lg:pb-20"
+        className="container-site pb-14 pt-40 sm:pb-16 lg:pb-24"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
