@@ -14,10 +14,10 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const rel = (file) => relative(root, file).replaceAll("\\", "/");
-// PDFs are byte-oriented (WinAnsi); everything else is UTF-8.
-const read = (file) => readFileSync(file, extname(file) === ".pdf" ? "latin1" : "utf8");
+const read = (file) => readFileSync(file, "utf8");
 
-const TEXT_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".mjs", ".css", ".html", ".json", ".txt", ".svg", ".toml", ".pdf"]);
+// Scan all text source and build files; compressed binary PDF downloads are excluded.
+const TEXT_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".mjs", ".css", ".html", ".json", ".txt", ".svg", ".toml"]);
 
 function walk(dir, files = []) {
   if (!existsSync(dir)) return files;

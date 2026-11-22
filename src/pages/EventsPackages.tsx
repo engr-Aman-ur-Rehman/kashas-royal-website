@@ -354,12 +354,12 @@ function Culinary() {
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <Button
               href={venue.menuPdf}
-              download
+              download={venue.menuDownloadName}
               size="lg"
               icon={<Download size={15} strokeWidth={1.5} />}
               iconPosition="left"
             >
-              Download Full Menu PDF
+              Download Catering Menu
             </Button>
             <Button to={`${routes.enquire}?package=catering`} variant="outlineLight" size="lg">
               Enquire About Catering

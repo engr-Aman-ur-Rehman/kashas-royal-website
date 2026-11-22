@@ -74,7 +74,7 @@ The current logo is gold artwork on an olive background. `src/components/ui/Logo
 
 The favicon files are `public/favicon.png` and `public/apple-touch-icon.png`.
 
-**Menu PDF:** `public/downloads/kashas-royal-menu.pdf`. The file in place is a one-page stand-in listing the sample starters. Replace it with your real menu PDF, keeping the same file name, and every "Download Sample Menu" button serves the new file. Make sure the PDF you upload shows no prices.
+**Menu PDF:** `public/downloads/kashas-catering-menu.pdf`. Replace the file (keeping the same name) whenever you update the menu, and every "Download Catering Menu" button serves the new file as `Kashas Catering Menu.pdf`.
 
 ## 3. Fonts and transitions
 
@@ -137,7 +137,7 @@ These come from the owner's brief. `npm run check:rules` fails if either is brok
 
 - [ ] Replace the placeholder reviews in `src/data/venueData.ts` (`reviews`) with real client reviews you have permission to publish, then set `REVIEWS_ARE_PLACEHOLDERS` to `false` to remove the "sample wording" note.
 - [ ] Replace the six stock placeholder photos in `src/data/media.ts`, and move the real venue photos into `public/images/`.
-- [ ] Replace `public/downloads/kashas-royal-menu.pdf` with the real menu.
+- [x] Replace `public/downloads/kashas-catering-menu.pdf` with the real catering menu.
 - [ ] Review the privacy policy wording in `src/components/layout/PrivacyModal.tsx`.
 - [ ] Set up the email notification in Netlify and send a test enquiry.
 - [ ] Once the final domain is known, change `og:image` in `index.html` to a full address (for example `https://your-domain/images/kashas-royal-logo.jpg`) so link previews on social media show the logo.

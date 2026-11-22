@@ -485,7 +485,7 @@ function MenuBanner() {
             />
           </div>
           <div className="relative z-10 flex flex-col justify-center p-8 sm:p-14 lg:p-16 xl:p-20">
-            <Eyebrow tone="light">Sample Menu &amp; Brochure</Eyebrow>
+            <Eyebrow tone="light">Catering Menu &amp; Brochure</Eyebrow>
             <SplitHeading
               id="menu-banner-heading"
               as="h2"
@@ -493,7 +493,7 @@ function MenuBanner() {
               text="A first taste of the table"
             />
             <p className="mt-6 max-w-md text-ivory/80">
-              Signature starters from our in-house kitchen, prepared by Kashas Events. Download the sample menu, then
+              Signature starters from our in-house kitchen, prepared by Kashas Events. Download our catering menu, then
               join us for a private viewing and consultation.
             </p>
             <ul className="mt-8 overflow-hidden border-b border-hairline-gold">
@@ -519,12 +519,12 @@ function MenuBanner() {
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <Button
                 href={venue.menuPdf}
-                download
+                download={venue.menuDownloadName}
                 size="lg"
                 icon={<Download size={15} strokeWidth={1.5} />}
                 iconPosition="left"
               >
-                Download Sample Menu (PDF)
+                Download Catering Menu
               </Button>
               <Button to={`${routes.enquire}?viewing=1`} variant="outlineLight" size="lg">
                 Book a Private Viewing

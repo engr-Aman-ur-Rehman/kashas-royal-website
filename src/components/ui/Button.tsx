@@ -16,7 +16,7 @@ interface BaseProps {
 
 type ButtonProps =
   | (BaseProps & { to: string; href?: never; onClick?: () => void })
-  | (BaseProps & { href: string; to?: never; download?: boolean; external?: boolean; onClick?: () => void })
+  | (BaseProps & { href: string; to?: never; download?: boolean | string; external?: boolean; onClick?: () => void })
   | (BaseProps & {
       to?: never;
       href?: never;

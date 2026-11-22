@@ -42,7 +42,8 @@ export const venue = {
     embedUrl: "https://www.google.com/maps?q=12+Bridge+Close,+Romford,+RM7+0AU&z=16&output=embed",
     directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=12+Bridge+Close,+Romford,+RM7+0AU",
   },
-  menuPdf: "/downloads/kashas-royal-menu.pdf",
+  menuPdf: "/downloads/kashas-catering-menu.pdf",
+  menuDownloadName: "Kashas Catering Menu.pdf",
 } as const;
 
 /** FOOTER ONLY — do not import this anywhere except components/layout/Footer.tsx. */
