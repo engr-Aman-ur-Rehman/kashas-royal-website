@@ -12,8 +12,8 @@ export const venue = {
   name: "Kashas Royal",
   tagline: "Catering • Venue • Decor",
   phone: {
-    display: "07475 515813",
-    href: "tel:+447475515813",
+    display: "07931 813422",
+    href: "tel:+447931813422",
   },
   address: {
     street: "12 Bridge Close",
