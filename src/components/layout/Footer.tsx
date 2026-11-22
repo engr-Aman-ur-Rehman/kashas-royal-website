@@ -5,9 +5,10 @@ import { LogoFull } from "@/components/ui/Logo";
 import { usePrivacy } from "@/context/PrivacyContext";
 import PreFooterCta from "./PreFooterCta";
 
-const headingClass = "eyebrow text-gold-champagne";
+const headingClass =
+  "font-condensed-label text-[1.125rem] font-bold uppercase tracking-[0.06em] text-gold-champagne";
 const linkClass =
-  "text-sm text-ivory/75 transition-colors duration-base ease-editorial hover:text-gold-champagne";
+  "link-sweep inline-flex text-[0.9375rem] text-ivory/80 transition-colors duration-base ease-editorial hover:text-gold-champagne";
 
 /**
  * Global footer. This is the ONLY component that renders the email address
@@ -18,14 +19,14 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-olive-deep text-ivory">
+    <footer className="surface-grain-dark bg-olive-deep text-ivory">
       <PreFooterCta />
 
-      <div className="container-site">
+      <div className="container-site relative z-10">
         <div className="hairline-t-gold grid gap-x-10 gap-y-14 py-16 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_1.15fr_1.15fr] lg:py-20">
           {/* 1. Brand */}
           <div>
-            <LogoFull className="-ml-9 -mt-2 w-60" />
+            <LogoFull className="-mt-1" />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-ivory/75">
               A premier banqueting and event venue in Romford.
             </p>
@@ -142,7 +143,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="hairline-t-gold flex flex-col gap-3 py-7 pb-24 text-xs tracking-wide text-ivory/55 sm:flex-row sm:items-center sm:justify-between lg:pb-7">
+        <div className="hairline-t-gold flex flex-col gap-3 py-7 pb-24 text-xs tracking-wide text-ivory/55 sm:flex-row sm:items-center sm:justify-between lg:pb-7 xl:pr-28 2xl:pr-32">
           <p>
             © {year} {venue.name}. All rights reserved.
           </p>

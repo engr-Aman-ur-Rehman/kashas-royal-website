@@ -1,21 +1,28 @@
 import { ArrowRight, Phone } from "lucide-react";
 import { routes, venue } from "@/data/venueData";
 import Button from "@/components/ui/Button";
+import SplitHeading from "@/components/ui/SplitHeading";
 import { Reveal } from "@/components/ui/Reveal";
 
 /** Closing call-to-action band shown above the footer on every page. */
 export default function PreFooterCta() {
   return (
-    <section aria-labelledby="prefooter-heading" className="relative overflow-hidden bg-olive-deep">
+    <section aria-labelledby="prefooter-heading" className="surface-grain-dark relative overflow-hidden bg-olive-deep">
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-20%,rgb(var(--color-olive)/0.9),transparent_65%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-20%,rgb(var(--color-olive)/0.92),transparent_65%)]"
       />
-      <Reveal className="container-site relative py-24 text-center sm:py-28 lg:py-36">
+      <Reveal className="container-site relative z-10 py-24 text-center sm:py-28 lg:py-36">
         <p className="eyebrow text-gold-champagne">Begin the Conversation</p>
-        <h2 id="prefooter-heading" className="display-xl mx-auto mt-6 max-w-4xl text-ivory">
-          Let’s Create Something <em className="font-normal italic text-gold-champagne">Unforgettable</em>
-        </h2>
+        <SplitHeading
+          id="prefooter-heading"
+          as="h2"
+          className="display-xl mx-auto mt-6 max-w-4xl text-ivory"
+          text={[
+            { text: "Let’s Create Something" },
+            { text: "Unforgettable", className: "text-gold-champagne" },
+          ]}
+        />
         <p className="lead mx-auto mt-7 max-w-xl text-ivory/75">
           Share your date and your vision. We will respond personally with availability, ideas and a bespoke quote for
           your occasion.

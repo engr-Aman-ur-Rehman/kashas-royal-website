@@ -68,24 +68,25 @@ Run `npm run check:media` after any change to confirm every image loads.
 
 ## 2. Logo and menu PDF
 
-**Logo:** `public/images/kashas-royal-logo.jpg`. Replace the file, keeping the same name, and it updates in the header, footer, mobile menu and form confirmation.
+**Logo:** `public/images/kashas-royal-crest.png` (isolated transparent gold KR emblem), `public/images/kashas-royal-flourish.png` (matching golden footer flourish) and `public/images/kashas-royal-logo.png` (full transparent emblem used for social/meta previews).
 
-The current logo is gold artwork on an olive background. `src/components/ui/Logo.tsx` removes that olive background in the browser so the gold sits directly on the header and footer, and crops the "KR" crest for the compact header mark. If a new logo has a different background colour or proportions, adjust the `feColorMatrix` values and `crestCrop` in that file, or pass `keyed={false}` to show the file exactly as supplied. A PNG or SVG with a transparent background also works; update `LOGO_SRC` in the same file to the new name.
+`src/components/ui/Logo.tsx` pairs the transparent gold KR crest with the modern handwritten `Beau Rivage` brand wordmark in the header, mobile menu, footer and enquiry confirmation.
 
 The favicon files are `public/favicon.png` and `public/apple-touch-icon.png`.
 
-**Menu PDF:** `public/downloads/kashas-royal-menu.pdf`. The file in place is a one-page stand-in listing the sample starters. Replace it with your real menu PDF, keeping the same file name, and every "Download Sample Menu" button serves the new file. Make sure the PDF you upload shows no prices.
+**Menu PDF:** `public/downloads/kashas-catering-menu.pdf`. Replace the file (keeping the same name) whenever you update the menu, and every "Download Catering Menu" button serves the new file as `Kashas Catering Menu.pdf`.
 
 ## 3. Fonts and transitions
 
 **Fonts** are set in two places:
 
-- `index.html`: the Google Fonts `<link>` chooses which families and weights load.
-- `src/index.css`: `--font-display` (headings, Cormorant Garamond) and `--font-sans` (body, Plus Jakarta Sans) at the top of the file.
+- `index.html`: the Google Fonts `<link>` loads the `Bricolage Grotesque` variable family (`opsz`, `wdth`, `wght`).
+- `src/index.css`: `--font-display` (bold condensed `wdth: 78–80`, `wght: 600–650`) and `--font-sans` (`Bricolage Grotesque` Regular/Medium) at the top of the file, plus `.ambient-canvas-grain` and `.surface-grain-dark` tactile paper/film grain utilities backed by `public/images/grain-light.webp` and `public/images/grain-dark.webp`.
+- `src/config/ambientTones.ts` & `src/components/layout/AmbientCanvas.tsx`: scroll-reactive background tones that smoothly shift across Editorial Ivory, Warm Stone, Soft Sage-Olive Mist, Champagne Linen and Botanical Mist as you scroll between sections.
 
-Change both together. Brand colours are in the same block of `src/index.css`.
+Change fonts in both `index.html` and `src/index.css` together. Brand colours, card radii (`10px`) and transition timings (`300ms` / `500ms` / `900ms` / `1200ms`) are in the same block of `src/index.css`.
 
-**Transitions** are in `src/config/motion.ts`: easing curves, durations, stagger timings, and the presets used for scroll reveals, tab changes, the mobile menu, modals and accordions. Hover transitions on links and buttons use `--ease-editorial`, `--duration-base` and `--duration-slow` in `src/index.css`. Visitors who have "reduce motion" switched on in their device settings automatically get a calmer version.
+**Transitions** are in `src/config/motion.ts` (GSAP `circ.out` 1.2s word reveals, `0.5s ease-in-out` card/hover glides, `0.05s` word stagger), with desktop smooth wheel scrolling via Lenis in `src/hooks/useSmoothScroll.ts`. Hover transitions on links, cards and buttons use `--ease-editorial`, `--duration-fast`, `--duration-base` and `--duration-slow` in `src/index.css`. Visitors who have "reduce motion" switched on in their device settings automatically get a calmer version.
 
 ## 4. Deploying to Netlify
 
@@ -136,7 +137,7 @@ These come from the owner's brief. `npm run check:rules` fails if either is brok
 
 - [ ] Replace the placeholder reviews in `src/data/venueData.ts` (`reviews`) with real client reviews you have permission to publish, then set `REVIEWS_ARE_PLACEHOLDERS` to `false` to remove the "sample wording" note.
 - [ ] Replace the six stock placeholder photos in `src/data/media.ts`, and move the real venue photos into `public/images/`.
-- [ ] Replace `public/downloads/kashas-royal-menu.pdf` with the real menu.
+- [x] Replace `public/downloads/kashas-catering-menu.pdf` with the real catering menu.
 - [ ] Review the privacy policy wording in `src/components/layout/PrivacyModal.tsx`.
 - [ ] Set up the email notification in Netlify and send a test enquiry.
-- [ ] Once the final domain is known, change `og:image` in `index.html` to a full address (for example `https://your-domain/images/kashas-royal-logo.jpg`) so link previews on social media show the logo.
+- [ ] Once the final domain is known, change `og:image` in `index.html` to a full address (for example `https://your-domain/images/kashas-royal-logo.png`) so link previews on social media show the logo.

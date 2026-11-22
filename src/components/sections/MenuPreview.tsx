@@ -23,7 +23,7 @@ export default function MenuPreview() {
         onChange={setActiveId}
         className="no-scrollbar -mx-5 flex gap-7 overflow-x-auto border-b border-hairline-gold px-5 sm:mx-0 sm:px-0"
         tabClassName={(isActive) =>
-          `relative shrink-0 whitespace-nowrap pb-4 font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.16em] transition-colors duration-base ease-editorial after:absolute after:inset-x-0 after:-bottom-px after:h-px after:bg-gold-champagne after:transition-transform after:duration-base after:ease-editorial ${
+          `font-condensed-label relative shrink-0 whitespace-nowrap pb-4 text-[0.875rem] font-semibold uppercase tracking-[0.1em] transition-colors duration-base ease-editorial after:absolute after:inset-x-0 after:-bottom-px after:h-[1.5px] after:bg-gold-champagne after:transition-transform after:duration-base after:ease-editorial ${
             isActive ? "text-gold-champagne after:scale-x-100" : "text-ivory/60 after:scale-x-0 hover:text-ivory"
           }`
         }
@@ -36,12 +36,17 @@ export default function MenuPreview() {
               {active.items.map((item, index) => (
                 <li
                   key={item}
-                  className="flex items-baseline gap-5 border-b border-hairline-gold py-3.5 font-display text-2xl text-ivory sm:text-[1.75rem]"
+                  className="group flex items-baseline gap-5 border-b border-hairline-gold py-3.5 transition-colors duration-base ease-editorial hover:border-gold-champagne/60"
                 >
-                  <span aria-hidden="true" className="w-5 font-sans text-[0.625rem] font-medium tracking-[0.2em] text-gold">
+                  <span
+                    aria-hidden="true"
+                    className="font-condensed-label w-6 text-[0.75rem] font-semibold tracking-[0.16em] text-gold transition-transform duration-base ease-editorial group-hover:translate-x-1"
+                  >
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  {item}
+                  <span className="font-condensed text-[1.75rem] leading-tight text-ivory transition-transform duration-base ease-editorial group-hover:translate-x-1.5 group-hover:text-gold-champagne sm:text-[2rem]">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>

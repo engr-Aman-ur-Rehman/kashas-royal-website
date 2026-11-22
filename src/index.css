@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------
-   Brand tokens. Change fonts, colours and CSS transition feel here.
-   Fonts must also be loaded in index.html (Google Fonts <link>).
+   Brand tokens & 8 Northumberland Avenue-inspired typography, radius,
+   surface grain and motion system.
+   Fonts are loaded via Google Fonts in index.html (Bricolage Grotesque
+   variable: opsz 12..96, wdth 75..100, wght 200..800).
    Colours are RGB triplets so Tailwind can apply opacity to them.
 ------------------------------------------------------------------- */
 :root {
-  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-sans: "Plus Jakarta Sans", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-signature: "Beau Rivage", "Brush Script MT", cursive;
 
   --color-olive: 79 91 49; /* #4F5B31 Royal Olive */
   --color-olive-deep: 43 51 25; /* #2B3319 Deep Heritage Olive */
@@ -22,38 +25,97 @@
   --color-tier-diamond: 190 203 199; /* cool pearl accent for the Diamond décor tier */
   --color-tier-platinum: 150 154 144; /* soft platinum accent for the Platinum décor tier */
 
-  --hairline-light: rgba(79, 91, 49, 0.16);
-  --hairline-dark: rgba(200, 155, 60, 0.25);
+  --hairline-light: rgba(79, 91, 49, 0.18);
+  --hairline-dark: rgba(200, 155, 60, 0.28);
 
-  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-base: 400ms;
+  /* 8 Northumberland Avenue transition curves & durations */
+  --ease-editorial: cubic-bezier(0.45, 0, 0.55, 1); /* 0.5s ease-in-out UI & card glide */
+  --ease-circ-out: cubic-bezier(0, 0.55, 0.45, 1); /* GSAP circ.out headline/reveal deceleration */
+  --duration-fast: 300ms;
+  --duration-base: 500ms;
   --duration-slow: 900ms;
+  --duration-reveal: 1200ms;
 
-  --radius-media: 3px;
+  /* 8 Northumberland Avenue corner geometry */
+  --radius-btn: 2px;
+  --radius-card: 10px;
+  --radius-media: 10px;
   --header-height: 4.75rem;
+  --ambient-bg: #F8F6F0;
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: calc(var(--header-height) + 1.5rem);
+    overflow-x: clip;
+    background-color: var(--ambient-bg);
+    transition: background-color 1400ms var(--ease-editorial);
+  }
+
+  /* Lenis smooth scroll integration (mirrors 8northumberland.co.uk) */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
   }
 
   body {
-    @apply bg-ivory font-sans text-slate antialiased;
+    @apply relative font-sans text-slate antialiased;
+    background-color: var(--ambient-bg);
     font-size: 1rem;
-    line-height: 1.7;
+    font-weight: 400;
+    line-height: 1.55;
+    font-stretch: 100%;
+    font-variation-settings: "opsz" 16, "wdth" 100, "wght" 400;
+    font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
-    /* Lining numerals keep phone numbers, postcodes and capacities clear in the serif face. */
     font-feature-settings: "lnum" 1, "kern" 1;
+    transition: background-color 1400ms var(--ease-editorial),
+      color var(--duration-base) var(--ease-editorial);
   }
 
+  /* Bold condensed display typography inspired by 8northumberland.co.uk */
   h1,
   h2,
   h3,
-  h4 {
-    @apply font-display font-medium text-ink;
+  h4,
+  h5 {
+    @apply font-display text-ink;
+    font-weight: 650;
+    font-stretch: 78%;
+    font-variation-settings: "opsz" 96, "wdth" 78, "wght" 650;
+    font-optical-sizing: auto;
     text-wrap: balance;
+  }
+
+  /* Bricolage Grotesque has no italic cut; keep emphasised display words bold & crisp */
+  h1 em,
+  h2 em,
+  h3 em,
+  h4 em,
+  .display-xl em,
+  .display-lg em,
+  .display-md em,
+  .display-sm em {
+    font-style: normal;
+    font-weight: 700;
+    font-variation-settings: "opsz" 96, "wdth" 78, "wght" 700;
   }
 
   p {
@@ -66,8 +128,8 @@
   }
 
   ::selection {
-    background: rgb(var(--color-gold) / 0.35);
-    color: rgb(var(--color-ink));
+    background: rgb(var(--color-olive-deep));
+    color: rgb(var(--color-ivory));
   }
 
   :focus-visible {
@@ -82,6 +144,40 @@
 }
 
 @layer components {
+  /* Full-viewport scroll-reactive grainy paper canvas (mirroring 8na body + body:after) */
+  .ambient-canvas {
+    transition: background-color 1400ms var(--ease-editorial);
+  }
+
+  .ambient-canvas-wash {
+    transition: opacity 1400ms var(--ease-editorial);
+  }
+
+  .ambient-canvas-grain {
+    background-image: url("/images/grain-light.webp");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.52;
+  }
+
+  /* Velvety tactile grain for deep heritage olive bands & sticky surfaces */
+  .surface-grain-dark {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .surface-grain-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("/images/grain-dark.webp");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.64;
+  }
+
   .container-site {
     @apply mx-auto w-full max-w-site px-5 sm:px-8 lg:px-12;
   }
@@ -90,28 +186,99 @@
     @apply py-20 sm:py-24 lg:py-32;
   }
 
+  /* Semi-condensed uppercase labels echoing 8na h6 / footer headings */
   .eyebrow {
-    @apply font-sans text-[0.6875rem] font-semibold uppercase tracking-eyebrow;
+    @apply font-sans text-[0.75rem] font-semibold uppercase tracking-eyebrow;
+    font-stretch: 75%;
+    font-variation-settings: "opsz" 24, "wdth" 75, "wght" 600;
   }
 
+  .font-condensed {
+    font-weight: 600;
+    font-stretch: 80%;
+    font-variation-settings: "opsz" 72, "wdth" 80, "wght" 600;
+    font-optical-sizing: auto;
+  }
+
+  .font-condensed-label {
+    font-stretch: 75%;
+    font-variation-settings: "opsz" 24, "wdth" 75, "wght" 600;
+    font-optical-sizing: auto;
+  }
+
+  .font-body-width {
+    font-weight: 500;
+    font-stretch: 100%;
+    font-variation-settings: "opsz" 20, "wdth" 100, "wght" 500;
+    font-optical-sizing: auto;
+  }
+
+  /* Modern handwritten luxury brand signature for Kashas Royal */
+  .font-signature {
+    font-family: var(--font-signature);
+    font-weight: 400;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    letter-spacing: 0.015em;
+  }
+
+  .brand-wordmark {
+    background-image: linear-gradient(180deg, #fffbf0 0%, #f3de9f 54%, #cfa242 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35));
+  }
+
+  /* Fluid bold condensed display scale modelled on 8northumberland.co.uk */
   .display-xl {
-    @apply font-display text-[2.75rem] font-medium leading-[1.02] tracking-[-0.01em] sm:text-6xl lg:text-7xl xl:text-[5.25rem];
+    @apply font-display;
+    font-size: clamp(3.125rem, 2.15rem + 4.1vw, 6.25rem);
+    font-weight: 650;
+    font-stretch: 78%;
+    font-variation-settings: "opsz" 96, "wdth" 78, "wght" 650;
+    font-optical-sizing: auto;
+    line-height: 0.96;
+    letter-spacing: -0.006em;
   }
 
   .display-lg {
-    @apply font-display text-4xl font-medium leading-[1.06] tracking-[-0.01em] sm:text-5xl lg:text-6xl;
+    @apply font-display;
+    font-size: clamp(2.5rem, 1.85rem + 2.6vw, 4.75rem);
+    font-weight: 650;
+    font-stretch: 78%;
+    font-variation-settings: "opsz" 96, "wdth" 78, "wght" 650;
+    font-optical-sizing: auto;
+    line-height: 0.98;
+    letter-spacing: -0.005em;
   }
 
   .display-md {
-    @apply font-display text-3xl font-medium leading-[1.1] sm:text-4xl lg:text-[2.75rem];
+    @apply font-display;
+    font-size: clamp(2rem, 1.55rem + 1.75vw, 3.625rem);
+    font-weight: 620;
+    font-stretch: 80%;
+    font-variation-settings: "opsz" 72, "wdth" 80, "wght" 620;
+    font-optical-sizing: auto;
+    line-height: 1;
+    letter-spacing: -0.004em;
   }
 
   .display-sm {
-    @apply font-display text-2xl font-medium leading-[1.15] sm:text-[1.75rem];
+    @apply font-display;
+    font-size: clamp(1.625rem, 1.35rem + 1vw, 2.5rem);
+    font-weight: 600;
+    font-stretch: 80%;
+    font-variation-settings: "opsz" 48, "wdth" 80, "wght" 600;
+    font-optical-sizing: auto;
+    line-height: 1.04;
   }
 
   .lead {
-    @apply text-base leading-relaxed sm:text-lg;
+    @apply text-base leading-[1.5] sm:text-[1.1875rem] lg:text-[1.25rem];
+    font-weight: 400;
+    font-variation-settings: "opsz" 20, "wdth" 100, "wght" 400;
   }
 
   .hairline-t {
@@ -122,14 +289,46 @@
     border-top: 1px solid var(--hairline-dark);
   }
 
+  /* Signature 8na dual-layer animated underline sweep (.subtext a) */
+  .link-sweep {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(currentColor, currentColor);
+    background-size: 100% 1.5px, 0 1.5px;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 2px;
+    transition: background-size 800ms ease, color var(--duration-base) var(--ease-editorial);
+  }
+
+  .link-sweep:hover {
+    background-size: 0 1.5px, 100% 1.5px;
+  }
+
+  /* Shared 8na 10px editorial card surface seated softly over the grainy canvas */
+  .card-surface {
+    @apply rounded-card border border-hairline bg-ivory/85 backdrop-blur-[2px];
+    transition: transform var(--duration-base) var(--ease-editorial),
+      border-color var(--duration-base) var(--ease-editorial),
+      box-shadow var(--duration-base) var(--ease-editorial),
+      background-color var(--duration-base) var(--ease-editorial);
+  }
+
+  .card-surface:hover {
+    @apply bg-ivory/95;
+    border-color: rgb(var(--color-gold) / 0.7);
+    box-shadow: 0 24px 48px -28px rgb(var(--color-olive-deep) / 0.28);
+  }
+
   .field-label {
-    @apply mb-2 block text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-ink;
+    @apply mb-2 block text-[0.75rem] font-semibold uppercase tracking-eyebrow text-ink;
+    font-stretch: 75%;
+    font-variation-settings: "opsz" 16, "wdth" 75, "wght" 600;
   }
 
   .field-input {
     @apply block w-full appearance-none rounded-none border-0 border-b bg-transparent px-0 py-2.5 font-sans text-base text-ink placeholder:text-slate/50;
     border-bottom-color: rgba(79, 91, 49, 0.35);
-    transition: border-color var(--duration-base) var(--ease-editorial);
+    transition: border-color var(--duration-base) var(--ease-editorial),
+      box-shadow var(--duration-base) var(--ease-editorial);
   }
 
   .field-input:hover {
@@ -164,9 +363,8 @@
     display: none;
   }
 
-
   .text-shadow-soft {
-    text-shadow: 0 1px 24px rgb(var(--color-ink) / 0.35);
+    text-shadow: 0 2px 32px rgb(var(--color-ink) / 0.45);
   }
 }
 

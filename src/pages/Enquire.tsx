@@ -5,6 +5,7 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 import Accordion from "@/components/ui/Accordion";
 import Eyebrow from "@/components/ui/Eyebrow";
 import PageHero from "@/components/ui/PageHero";
+import SplitHeading from "@/components/ui/SplitHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import EnquiryForm from "@/components/enquire/EnquiryForm";
 
@@ -18,32 +19,32 @@ export default function Enquire() {
         eyebrow="Enquire & FAQs"
         title={
           <>
-            Let’s Begin Planning Your <em className="font-normal italic text-gold-champagne">Occasion</em>
+            Let’s Begin Planning Your <em className="text-gold-champagne">Occasion</em>
           </>
         }
         intro="Tell us a little about your event and we will respond personally with availability and a bespoke quote."
       />
 
       {/* Split layout: reassurance and contact details beside the enquiry form */}
-      <section aria-label="Make an enquiry" className="section-pad">
+      <section data-ambient-tone="ivory" aria-label="Make an enquiry" className="section-pad">
         <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
               <Eyebrow>With You Throughout</Eyebrow>
-              <p className="mt-6 font-display text-[2rem] font-medium leading-[1.15] text-ink sm:text-[2.5rem]">
+              <p className="font-condensed mt-6 text-[2.25rem] leading-[1.06] text-ink sm:text-[2.75rem]">
                 “From your first consultation to the final guest farewell, our team guides every detail.”
               </p>
 
               <a
                 href={venue.phone.href}
-                className="group mt-10 flex items-center gap-5 border border-hairline bg-stone/60 p-6 transition-colors duration-base ease-editorial hover:border-gold"
+                className="card-surface group mt-10 flex items-center gap-5 p-6 hover:-translate-y-1"
               >
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-olive-deep text-gold-champagne transition-colors duration-base ease-editorial group-hover:bg-gold group-hover:text-ink">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-olive-deep text-gold-champagne transition-all duration-base ease-editorial group-hover:scale-105 group-hover:bg-gold group-hover:text-ink">
                   <Phone size={18} strokeWidth={1.5} aria-hidden="true" />
                 </span>
                 <span>
                   <span className="eyebrow block text-olive">Speak to our team</span>
-                  <span className="mt-1.5 block font-display text-3xl leading-none text-ink">{venue.phone.display}</span>
+                  <span className="font-condensed mt-1.5 block text-[2rem] leading-none text-ink">{venue.phone.display}</span>
                 </span>
               </a>
 
@@ -74,11 +75,11 @@ export default function Enquire() {
               <ol className="mt-5">
                 {consultationSteps.map((step, index) => (
                   <li key={step.title} className="flex gap-5 border-t border-hairline py-5 last:border-b">
-                    <span aria-hidden="true" className="font-display text-3xl leading-none text-gold">
-                      {index + 1}
+                    <span aria-hidden="true" className="font-condensed text-[2rem] leading-none text-gold">
+                      0{index + 1}
                     </span>
                     <div>
-                      <h3 className="font-display text-xl font-medium leading-snug text-ink">{step.title}</h3>
+                      <h3 className="font-condensed text-[1.5rem] leading-snug text-ink">{step.title}</h3>
                       <p className="mt-1 text-sm leading-relaxed">{step.text}</p>
                     </div>
                   </li>
@@ -96,34 +97,39 @@ export default function Enquire() {
       </section>
 
       {/* Full FAQ accordion, grouped by policy area */}
-      <section id="faqs" aria-labelledby="faqs-heading" className="section-pad scroll-mt-16 bg-stone">
+      <section id="faqs" data-ambient-tone="olive-mist" aria-labelledby="faqs-heading" className="section-pad scroll-mt-16">
         <div className="container-site grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
               <Eyebrow>Frequently Asked Questions</Eyebrow>
-              <h2 id="faqs-heading" className="display-lg mt-6">
-                Clear answers, before you ask
-              </h2>
+              <SplitHeading id="faqs-heading" as="h2" className="display-lg mt-6" text="Clear answers, before you ask" />
               <p className="mt-6 max-w-sm">
                 Our venue policies in full, so you can plan with confidence. If your question is not answered here, call
                 us on{" "}
-                <a href={venue.phone.href} className="font-semibold text-ink underline decoration-gold underline-offset-4">
+                <a href={venue.phone.href} className="link-sweep font-medium text-ink hover:text-olive">
                   {venue.phone.display}
                 </a>
                 .
               </p>
               <nav aria-label="FAQ categories" className="mt-9 hidden lg:block">
-                <ul className="border-b border-hairline">
+                <ul className="overflow-hidden border-b border-hairline">
                   {faqCategories.map((category) => (
                     <li key={category.id} className="border-t border-hairline">
                       <Link
                         to={`#faq-${category.id}`}
-                        className="group flex items-baseline gap-4 py-3.5 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-slate transition-colors duration-base ease-editorial hover:text-ink"
+                        className="group flex items-baseline py-3.5 text-slate transition-colors duration-base ease-editorial hover:text-ink"
                       >
-                        <span aria-hidden="true" className="text-gold transition-transform duration-base ease-editorial group-hover:translate-x-1">
-                          →
+                        <span className="flex items-baseline gap-3 -translate-x-5 transition-transform duration-base ease-editorial group-hover:translate-x-0">
+                          <span
+                            aria-hidden="true"
+                            className="text-gold opacity-0 transition-opacity duration-base ease-editorial group-hover:opacity-100"
+                          >
+                            →
+                          </span>
+                          <span className="font-condensed-label text-[0.875rem] font-semibold uppercase tracking-[0.12em]">
+                            {category.title}
+                          </span>
                         </span>
-                        {category.title}
                       </Link>
                     </li>
                   ))}
@@ -136,7 +142,7 @@ export default function Enquire() {
             {faqCategories.map((category, index) => (
               <Reveal key={category.id}>
                 <section id={`faq-${category.id}`} aria-labelledby={`faq-${category.id}-heading`} className="scroll-mt-28">
-                  <p className="font-sans text-[0.6875rem] font-semibold tracking-[0.2em] text-gold">0{index + 1}</p>
+                  <p className="font-condensed-label text-xs font-semibold tracking-[0.2em] text-gold">0{index + 1}</p>
                   <h3 id={`faq-${category.id}-heading`} className="display-md mb-7 mt-3">
                     {category.title}
                   </h3>

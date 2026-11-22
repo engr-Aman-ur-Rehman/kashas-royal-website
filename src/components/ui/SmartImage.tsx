@@ -46,7 +46,7 @@ export default function SmartImage({
           if (node?.complete && node.naturalWidth > 0 && !loaded) setLoaded(true);
         }}
         style={{ objectPosition: failed ? "center" : image.focus }}
-        className={`h-full w-full object-cover transition-[opacity,transform] duration-slow ease-editorial ${
+        className={`h-full w-full object-cover transition-[opacity,transform] duration-base ease-editorial ${
           loaded ? "opacity-100" : "opacity-0"
         } ${imgClassName}`}
       />

@@ -13,6 +13,12 @@ interface TabListProps<T extends string> {
   activeId: T;
   onChange: (id: T) => void;
   orientation?: "horizontal" | "vertical";
+  /**
+   * Mirrors 8 Northumberland Avenue's `.tabs-alternative` & `.capacity-tabs`:
+   * hovering a tab on desktop (>=1024px) immediately previews its slide while
+   * click and keyboard roving focus continue to work everywhere.
+   */
+  activateOnHover?: boolean;
   className?: string;
   tabClassName?: (active: boolean) => string;
   renderTab?: (tab: TabOption<T>, active: boolean) => ReactNode;
@@ -29,6 +35,7 @@ export function TabList<T extends string>({
   activeId,
   onChange,
   orientation = "horizontal",
+  activateOnHover = false,
   className = "",
   tabClassName,
   renderTab,
@@ -76,6 +83,13 @@ export function TabList<T extends string>({
             aria-controls={`${idBase}-panel`}
             tabIndex={active ? 0 : -1}
             onClick={() => onChange(tab.id)}
+            onMouseEnter={
+              activateOnHover
+                ? () => {
+                    if (window.innerWidth >= 1024) onChange(tab.id);
+                  }
+                : undefined
+            }
             onKeyDown={(event) => onKeyDown(event, index)}
             className={tabClassName?.(active)}
           >

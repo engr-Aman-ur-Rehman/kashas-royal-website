@@ -255,7 +255,7 @@ export default function EnquiryForm() {
   };
 
   return (
-    <div className="border border-hairline bg-stone/50 p-6 sm:p-10 lg:p-12">
+    <div className="rounded-card border border-hairline bg-ivory/80 p-6 backdrop-blur-[2px] sm:p-10 lg:p-12">
       <AnimatePresence mode="wait" initial={false}>
         {status === "success" && submitted ? (
           <motion.div
@@ -273,7 +273,7 @@ export default function EnquiryForm() {
             <LogoEmblem className="w-16" />
             <p className="eyebrow mt-9 text-olive">Enquiry Received</p>
             <h2 className="display-lg mt-4">
-              Thank you, <em className="font-normal italic text-olive">{submitted.name.trim().split(/\s+/)[0]}</em>
+              Thank you, <em className="text-olive">{submitted.name.trim().split(/\s+/)[0]}</em>
             </h2>
             <p className="lead mt-5 max-w-md">
               Your enquiry is with our team. We will be in touch personally to discuss your occasion and arrange the
@@ -515,8 +515,10 @@ export default function EnquiryForm() {
                     return (
                       <label
                         key={option.value}
-                        className={`flex cursor-pointer items-center gap-3 border px-4 py-3.5 text-sm transition-colors duration-base ease-editorial focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-gold ${
-                          checked ? "border-olive bg-ivory text-ink" : "border-olive/25 text-slate hover:border-olive/60"
+                        className={`flex cursor-pointer items-center gap-3 rounded-[6px] border px-4 py-3.5 text-sm transition-all duration-base ease-editorial focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-gold ${
+                          checked
+                            ? "border-olive-deep bg-ivory text-ink shadow-[0_10px_24px_-16px_rgb(var(--color-olive-deep)/0.35)]"
+                            : "border-olive/25 bg-ivory/40 text-slate hover:-translate-y-0.5 hover:border-olive hover:bg-ivory hover:text-ink"
                         }`}
                       >
                         <input
@@ -529,8 +531,8 @@ export default function EnquiryForm() {
                         />
                         <span
                           aria-hidden="true"
-                          className={`grid h-[1.125rem] w-[1.125rem] shrink-0 place-items-center border transition-colors duration-base ease-editorial ${
-                            checked ? "border-olive bg-olive text-ivory" : "border-olive/50 bg-ivory"
+                          className={`grid h-[1.125rem] w-[1.125rem] shrink-0 place-items-center rounded-[2px] border transition-colors duration-base ease-editorial ${
+                            checked ? "border-olive-deep bg-olive-deep text-ivory" : "border-olive/50 bg-ivory"
                           }`}
                         >
                           {checked ? <Check size={12} strokeWidth={3} /> : null}

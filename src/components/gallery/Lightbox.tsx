@@ -53,7 +53,7 @@ export default function Lightbox({ images, index, categoryLabel, onClose, onNavi
   }, [index, images, total]);
 
   const controlClass =
-    "grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold/50 text-gold-champagne transition-colors duration-base ease-editorial hover:bg-gold hover:text-ink sm:h-12 sm:w-12";
+    "grid h-11 w-11 shrink-0 place-items-center rounded-full border-2 border-gold/60 text-gold-champagne transition-all duration-fast ease-editorial hover:scale-105 hover:border-gold hover:bg-gold hover:text-ink sm:h-12 sm:w-12";
 
   return createPortal(
     <AnimatePresence>
@@ -111,7 +111,7 @@ export default function Lightbox({ images, index, categoryLabel, onClose, onNavi
                     if (!event.currentTarget.src.endsWith(FALLBACK_IMAGE)) event.currentTarget.src = FALLBACK_IMAGE;
                   }}
                   draggable={false}
-                  className="max-h-full max-w-full cursor-grab touch-pan-y select-none rounded-media object-contain active:cursor-grabbing"
+                  className="max-h-full max-w-full cursor-grab touch-pan-y select-none rounded-card object-contain active:cursor-grabbing"
                 />
               </AnimatePresence>
             </div>
@@ -127,13 +127,13 @@ export default function Lightbox({ images, index, categoryLabel, onClose, onNavi
           </div>
 
           <div className="shrink-0 px-5 pb-6 pt-5 text-center sm:px-8 sm:pb-8">
-            <p className="font-display text-2xl text-ivory sm:text-3xl">{image.caption}</p>
+            <p className="font-condensed text-2xl text-ivory sm:text-3xl">{image.caption}</p>
             <ul className="mt-3 flex flex-wrap justify-center gap-2" aria-label="Tags">
               {[categoryLabel(image), ...image.tags].map((tag, tagIndex) => (
                 <li
                   key={tag}
-                  className={`border px-3 py-1 font-sans text-[0.625rem] font-semibold uppercase tracking-[0.16em] ${
-                    tagIndex === 0 ? "border-gold bg-gold text-ink" : "border-gold/40 text-gold-champagne"
+                  className={`font-condensed-label rounded-full border px-3.5 py-1 text-[0.75rem] font-semibold uppercase tracking-[0.12em] ${
+                    tagIndex === 0 ? "border-gold bg-gold text-ink" : "border-gold/45 text-gold-champagne"
                   }`}
                 >
                   {tag}

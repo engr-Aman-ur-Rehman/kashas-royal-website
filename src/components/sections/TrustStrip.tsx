@@ -8,23 +8,31 @@ const icons = { hygiene: ShieldCheck, tagvenue: BadgeCheck, google: Star } as co
 export default function TrustStrip({ tone = "light" }: { tone?: "light" | "dark" }) {
   const dark = tone === "dark";
   return (
-    <RevealGroup
-      as="ul"
-      className={`grid border-y sm:grid-cols-3 ${dark ? "border-hairline-gold" : "border-hairline"}`}
-    >
-      {trustSignals.map((signal, index) => {
+    <RevealGroup as="ul" className="grid gap-5 sm:grid-cols-3">
+      {trustSignals.map((signal) => {
         const Icon = icons[signal.id];
         return (
           <RevealItem
             as="li"
             key={signal.id}
-            className={`flex items-center gap-5 py-7 sm:px-8 sm:py-9 sm:first:pl-0 sm:last:pr-0 ${
-              index > 0 ? `border-t sm:border-l sm:border-t-0 ${dark ? "border-hairline-gold" : "border-hairline"}` : ""
+            className={`group flex items-center gap-5 rounded-card border p-6 transition-all duration-base ease-editorial hover:-translate-y-1 sm:p-8 ${
+              dark
+                ? "border-hairline-gold bg-olive/30 hover:border-gold-champagne/70 hover:bg-olive/45"
+                : "border-hairline bg-ivory/85 backdrop-blur-[2px] hover:border-gold/75 hover:bg-ivory/95 hover:shadow-[0_24px_48px_-28px_rgb(var(--color-olive-deep)/0.28)]"
             }`}
           >
-            <Icon size={30} strokeWidth={1} className="shrink-0 text-gold" aria-hidden="true" />
+            <span
+              aria-hidden="true"
+              className={`grid h-12 w-12 shrink-0 place-items-center rounded-full border transition-all duration-base ease-editorial ${
+                dark
+                  ? "border-gold/50 text-gold-champagne group-hover:border-gold group-hover:bg-gold group-hover:text-ink"
+                  : "border-olive/25 bg-stone/60 text-olive group-hover:border-olive-deep group-hover:bg-olive-deep group-hover:text-gold-champagne"
+              }`}
+            >
+              <Icon size={22} strokeWidth={1.35} />
+            </span>
             <div>
-              <p className={`font-display text-4xl font-medium leading-none ${dark ? "text-ivory" : "text-ink"}`}>
+              <p className={`font-condensed text-[2.75rem] leading-none sm:text-[3.25rem] ${dark ? "text-ivory" : "text-ink"}`}>
                 {signal.value}
                 {signal.stars ? (
                   <>

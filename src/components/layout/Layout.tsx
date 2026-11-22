@@ -1,12 +1,13 @@
 import { useMemo, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { PrivacyContext } from "@/context/PrivacyContext";
+import AmbientCanvas from "./AmbientCanvas";
 import Header from "./Header";
 import Footer from "./Footer";
+import FloatingEnquireButton from "./FloatingEnquireButton";
 import MobileStickyBar from "./MobileStickyBar";
 import PrivacyModal from "./PrivacyModal";
 import ScrollManager from "./ScrollManager";
-import { LogoKeyFilter } from "@/components/ui/Logo";
 
 export default function Layout() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
@@ -14,21 +15,24 @@ export default function Layout() {
 
   return (
     <PrivacyContext.Provider value={privacy}>
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:bg-gold focus:px-5 focus:py-3 focus:text-xs focus:font-semibold focus:uppercase focus:tracking-[0.16em] focus:text-ink"
-      >
-        Skip to content
-      </a>
-      <LogoKeyFilter />
-      <ScrollManager />
-      <Header />
-      <main id="main" tabIndex={-1} className="outline-none">
-        <Outlet />
-      </main>
-      <Footer />
-      <MobileStickyBar />
-      <PrivacyModal open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
+      <div className="relative z-0 min-h-screen">
+        <AmbientCanvas />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:rounded-btn focus:bg-gold focus:px-5 focus:py-3 focus:text-xs focus:font-semibold focus:uppercase focus:tracking-[0.14em] focus:text-ink"
+        >
+          Skip to content
+        </a>
+        <ScrollManager />
+        <Header />
+        <main id="main" tabIndex={-1} className="relative z-0 outline-none">
+          <Outlet />
+        </main>
+        <Footer />
+        <FloatingEnquireButton />
+        <MobileStickyBar />
+        <PrivacyModal open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
+      </div>
     </PrivacyContext.Provider>
   );
 }

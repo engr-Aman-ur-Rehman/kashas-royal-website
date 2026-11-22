@@ -53,7 +53,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
               type="button"
               onClick={onClose}
               aria-label="Close menu"
-              className="grid h-11 w-11 place-items-center rounded-full border border-gold/50 text-gold-champagne transition-colors duration-base ease-editorial hover:bg-gold hover:text-ink"
+              className="grid h-11 w-11 place-items-center rounded-full border border-gold/55 text-gold-champagne transition-all duration-base ease-editorial hover:rotate-90 hover:border-gold hover:bg-gold hover:text-ink"
             >
               <X size={20} strokeWidth={1.5} aria-hidden="true" />
             </button>
@@ -74,22 +74,22 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                     end
                     onClick={onClose}
                     className={({ isActive }) =>
-                      `group flex items-center justify-between gap-4 py-4 font-display text-[2rem] leading-tight transition-colors duration-base ease-editorial xs:text-4xl sm:py-5 sm:text-5xl ${
+                      `group flex items-center justify-between gap-4 py-4 font-condensed text-[2.25rem] leading-[1.02] transition-colors duration-base ease-editorial xs:text-[2.75rem] sm:py-5 sm:text-[3.5rem] ${
                         isActive ? "text-gold-champagne" : "text-ivory hover:text-gold-champagne"
                       }`
                     }
                   >
                     <span className="flex items-baseline gap-5">
-                      <span aria-hidden="true" className="w-5 font-sans text-[0.625rem] font-medium tracking-[0.2em] text-gold">
+                      <span aria-hidden="true" className="font-condensed-label w-6 text-xs font-semibold tracking-[0.18em] text-gold">
                         0{index + 1}
                       </span>
                       {link.label}
                     </span>
                     <ArrowRight
                       size={20}
-                      strokeWidth={1.25}
+                      strokeWidth={1.35}
                       aria-hidden="true"
-                      className="shrink-0 text-gold transition-transform duration-base ease-editorial group-hover:translate-x-1"
+                      className="shrink-0 text-gold transition-transform duration-base ease-editorial group-hover:translate-x-1.5"
                     />
                   </NavLink>
                 </motion.li>

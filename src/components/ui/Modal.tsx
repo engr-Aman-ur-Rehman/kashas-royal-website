@@ -41,7 +41,7 @@ export default function Modal({ open, onClose, title, eyebrow, children }: Modal
             aria-labelledby={titleId}
             tabIndex={-1}
             variants={modalPanel}
-            className="relative flex max-h-[90svh] w-full max-w-2xl flex-col bg-ivory shadow-2xl"
+            className="relative flex max-h-[90svh] w-full max-w-2xl flex-col overflow-hidden rounded-t-card bg-ivory shadow-2xl sm:rounded-card"
           >
             <div className="flex items-start justify-between gap-6 border-b border-hairline px-6 py-5 sm:px-10 sm:py-7">
               <div>
@@ -55,7 +55,7 @@ export default function Modal({ open, onClose, title, eyebrow, children }: Modal
                 type="button"
                 onClick={onClose}
                 aria-label="Close dialog"
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-olive/35 text-olive transition-colors duration-base ease-editorial hover:bg-olive hover:text-ivory"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-olive-deep/45 text-olive-deep transition-all duration-base ease-editorial hover:rotate-90 hover:border-olive-deep hover:bg-olive-deep hover:text-ivory"
               >
                 <X size={18} strokeWidth={1.5} />
               </button>

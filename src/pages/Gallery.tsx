@@ -40,14 +40,14 @@ export default function Gallery() {
         eyebrow="Gallery"
         title={
           <>
-            Moments Framed in Light &amp; <em className="font-normal italic text-gold-champagne">Grandeur</em>
+            Moments Framed in Light &amp; <em className="text-gold-champagne">Grandeur</em>
           </>
         }
         intro="Weddings, décor, private celebrations and dining at Kashas Royal. Select any image to view it full screen."
         image={media.galleryHero}
       />
 
-      <section aria-label="Photo gallery" className="section-pad">
+      <section data-ambient-tone="warm-stone" aria-label="Photo gallery" className="section-pad">
         <div className="container-site">
           <div className="flex flex-col gap-5 border-b border-hairline sm:flex-row sm:items-end sm:justify-between">
             <TabList
@@ -58,8 +58,8 @@ export default function Gallery() {
               onChange={setFilter}
               className="no-scrollbar -mx-5 flex gap-7 overflow-x-auto px-5 sm:mx-0 sm:gap-9 sm:px-0"
               tabClassName={(active) =>
-                `relative shrink-0 whitespace-nowrap pb-5 font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.16em] transition-colors duration-base ease-editorial after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:bg-gold after:transition-transform after:duration-base after:ease-editorial ${
-                  active ? "text-ink after:scale-x-100" : "text-slate/70 after:scale-x-0 hover:text-ink"
+                `font-condensed-label relative shrink-0 whitespace-nowrap pb-5 text-[0.875rem] font-semibold uppercase tracking-[0.12em] transition-colors duration-base ease-editorial after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-gold after:transition-transform after:duration-base after:ease-editorial ${
+                  active ? "text-ink after:scale-x-100" : "text-slate/65 after:scale-x-0 hover:text-ink"
                 }`
               }
             />
@@ -71,7 +71,7 @@ export default function Gallery() {
           <TabPanel idBase="gallery" activeId={filter} className="mt-8 outline-offset-8 sm:mt-10">
             <motion.ul
               layout
-              className="grid grid-flow-dense auto-rows-[38vw] grid-cols-2 gap-3 sm:auto-rows-[26vw] sm:gap-4 lg:auto-rows-[17.5rem] lg:grid-cols-4"
+              className="grid grid-flow-dense auto-rows-[38vw] grid-cols-2 gap-4 sm:auto-rows-[26vw] sm:gap-5 lg:auto-rows-[18rem] lg:grid-cols-4"
             >
               <AnimatePresence mode="popLayout" initial={false}>
                 {images.map((image, index) => (
@@ -88,28 +88,33 @@ export default function Gallery() {
                       type="button"
                       onClick={() => setOpenIndex(index)}
                       aria-label={`View image: ${image.caption}`}
-                      className="group relative block h-full w-full overflow-hidden rounded-media text-left"
+                      className="group relative block h-full w-full overflow-hidden rounded-card text-left"
                     >
                       <SmartImage
                         image={image}
                         useThumb
                         className="h-full w-full"
-                        imgClassName="group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
+                        imgClassName="group-hover:scale-105 group-focus-visible:scale-105"
                       />
                       <span
                         aria-hidden="true"
-                        className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent opacity-0 transition-opacity duration-base ease-editorial group-hover:opacity-100 group-focus-visible:opacity-100"
+                        className="absolute inset-0 bg-gradient-to-t from-olive-deep/90 via-olive-deep/30 to-transparent opacity-0 transition-opacity duration-base ease-editorial group-hover:opacity-100 group-focus-visible:opacity-100"
                       />
-                      <span className="absolute inset-x-0 bottom-0 flex translate-y-2 items-end justify-between gap-3 p-4 opacity-0 transition-all duration-base ease-editorial group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 sm:p-5">
+                      <span className="absolute inset-x-0 bottom-0 flex translate-y-5 items-end justify-between gap-3 p-4 opacity-0 transition-all duration-base ease-editorial group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 sm:p-5">
                         <span>
-                          <span className="block font-sans text-[0.5625rem] font-semibold uppercase tracking-[0.2em] text-gold-champagne">
+                          <span className="font-condensed-label block text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-gold-champagne">
                             {categoryLabel(image)}
                           </span>
-                          <span className="mt-1 block font-display text-lg leading-tight text-ivory sm:text-xl">
+                          <span className="font-condensed mt-1 block text-xl leading-[1.06] text-ivory sm:text-2xl">
                             {image.caption}
                           </span>
                         </span>
-                        <Expand size={18} strokeWidth={1.5} className="shrink-0 text-gold-champagne" aria-hidden="true" />
+                        <span
+                          aria-hidden="true"
+                          className="grid h-[38px] w-[38px] shrink-0 place-items-center rounded-full border border-ivory/80 bg-ivory text-olive-deep transition-all duration-base ease-editorial group-hover:border-gold group-hover:bg-gold group-hover:text-ink"
+                        >
+                          <Expand size={15} strokeWidth={1.6} />
+                        </span>
                       </span>
                     </button>
                   </motion.li>

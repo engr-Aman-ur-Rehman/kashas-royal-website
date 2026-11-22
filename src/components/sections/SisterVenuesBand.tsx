@@ -1,6 +1,7 @@
 import { group } from "@/data/venueData";
 import ArrowLink from "@/components/ui/ArrowLink";
 import Eyebrow from "@/components/ui/Eyebrow";
+import SplitHeading from "@/components/ui/SplitHeading";
 import { Reveal } from "@/components/ui/Reveal";
 
 interface SisterVenuesBandProps {
@@ -14,7 +15,7 @@ export default function SisterVenuesBand({ variant = "band" }: SisterVenuesBandP
 
   if (variant === "card") {
     return (
-      <Reveal className="grid items-center gap-8 border border-hairline bg-ivory p-8 sm:p-12 lg:grid-cols-[1fr_auto] lg:gap-16">
+      <Reveal className="card-surface grid items-center gap-8 p-8 hover:-translate-y-1 sm:p-12 lg:grid-cols-[1fr_auto] lg:gap-16">
         <div>
           <Eyebrow>Our Sister Venues · South London</Eyebrow>
           <h2 className="display-md mt-5">
@@ -32,23 +33,31 @@ export default function SisterVenuesBand({ variant = "band" }: SisterVenuesBandP
   }
 
   return (
-    <section aria-labelledby="sister-venues-heading" className="section-pad bg-stone">
+    <section data-ambient-tone="warm-sand" aria-labelledby="sister-venues-heading" className="section-pad">
       <div className="container-site grid gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-6">
           <Eyebrow>Our Sister Venues · {group.sisterVenues.location}</Eyebrow>
-          <h2 id="sister-venues-heading" className="display-lg mt-6">
-            Also considering South London?
-          </h2>
+          <SplitHeading id="sister-venues-heading" as="h2" className="display-lg mt-6" text="Also considering South London?" />
           <p className="lead mt-6 max-w-xl">{group.sisterVenues.description}</p>
         </Reveal>
         <Reveal className="lg:col-span-5 lg:col-start-8 lg:pt-12" delay={0.1}>
           <ul className="border-b border-hairline">
             {[imperial, suite].map((name) => (
-              <li key={name} className="flex items-baseline gap-5 border-t border-hairline py-5">
-                <span aria-hidden="true" className="text-gold">
-                  →
-                </span>
-                <span className="font-display text-[1.75rem] leading-tight text-ink sm:text-4xl">{name}</span>
+              <li
+                key={name}
+                className="group overflow-hidden border-t border-hairline py-5"
+              >
+                <div className="flex items-baseline gap-4 transition-transform duration-base ease-editorial lg:-translate-x-7 lg:group-hover:translate-x-0">
+                  <span
+                    aria-hidden="true"
+                    className="font-sans text-xl text-gold transition-opacity duration-base ease-editorial lg:opacity-0 lg:group-hover:opacity-100"
+                  >
+                    →
+                  </span>
+                  <span className="font-condensed text-[2rem] leading-[1.04] text-ink transition-colors duration-base ease-editorial group-hover:text-olive sm:text-[2.5rem]">
+                    {name}
+                  </span>
+                </div>
               </li>
             ))}
           </ul>

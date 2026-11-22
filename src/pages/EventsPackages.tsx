@@ -31,6 +31,7 @@ import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
 import PageHero from "@/components/ui/PageHero";
 import SmartImage from "@/components/ui/SmartImage";
+import SplitHeading from "@/components/ui/SplitHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import MenuPreview from "@/components/sections/MenuPreview";
 import SisterVenuesBand from "@/components/sections/SisterVenuesBand";
@@ -43,13 +44,16 @@ const eventImages: Record<EventTypeId, MediaImage> = {
 
 function EventExperiences() {
   return (
-    <section aria-labelledby="experiences-heading" className="section-pad">
+    <section data-ambient-tone="ivory" aria-labelledby="experiences-heading" className="section-pad">
       <div className="container-site">
         <Reveal className="max-w-3xl">
           <Eyebrow>Event Experiences</Eyebrow>
-          <h2 id="experiences-heading" className="display-lg mt-6">
-            Hosted with the care each occasion deserves
-          </h2>
+          <SplitHeading
+            id="experiences-heading"
+            as="h2"
+            className="display-lg mt-6"
+            text="Hosted with the care each occasion deserves"
+          />
         </Reveal>
 
         <div className="mt-16 space-y-20 lg:mt-24 lg:space-y-32">
@@ -63,13 +67,19 @@ function EventExperiences() {
               >
                 <Reveal
                   variant="editorial"
-                  className={`lg:col-span-6 ${imageFirst ? "" : "lg:order-2 lg:col-start-7"}`}
+                  className={`group overflow-hidden rounded-card lg:col-span-6 ${
+                    imageFirst ? "" : "lg:order-2 lg:col-start-7"
+                  }`}
                 >
-                  <SmartImage image={eventImages[event.id]} className="aspect-[4/3] rounded-media lg:aspect-[5/4]" />
+                  <SmartImage
+                    image={eventImages[event.id]}
+                    className="aspect-[4/3] rounded-card lg:aspect-[5/4]"
+                    imgClassName="group-hover:scale-105"
+                  />
                 </Reveal>
                 <Reveal className={`lg:col-span-5 ${imageFirst ? "lg:col-start-8" : "lg:order-1"}`}>
                   <p className="flex items-center gap-4">
-                    <span className="font-sans text-[0.6875rem] font-semibold tracking-[0.2em] text-gold">
+                    <span className="font-condensed-label text-xs font-semibold tracking-[0.2em] text-gold">
                       0{index + 1}
                     </span>
                     <span className="eyebrow text-olive">{event.eyebrow}</span>
@@ -84,7 +94,7 @@ function EventExperiences() {
                     {event.occasions.map((occasion) => (
                       <li
                         key={occasion}
-                        className="border border-hairline px-3.5 py-1.5 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-ink"
+                        className="font-condensed-label rounded-full border border-hairline bg-ivory/65 px-3.5 py-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-ink transition-colors duration-base ease-editorial hover:border-olive-deep hover:bg-olive-deep hover:text-ivory"
                       >
                         {occasion}
                       </li>
@@ -105,18 +115,22 @@ function EventExperiences() {
 
 const hireImages = { "wedding-full": media.weddingPackage, "dry-hire": media.dryHire } as const;
 
+/** Modelled on 8 Northumberland Avenue's `.two-column-cta`: 10px card frames with 1.05x hover zoom. */
 function HireOptions() {
   return (
-    <section id="hire-options" aria-labelledby="hire-heading" className="section-pad scroll-mt-20 bg-stone">
+    <section id="hire-options" data-ambient-tone="warm-stone" aria-labelledby="hire-heading" className="section-pad scroll-mt-20">
       <div className="container-site">
         <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <Eyebrow>Hire Options</Eyebrow>
-            <h2 id="hire-heading" className="display-lg mt-6">
-              All-inclusive, or entirely your own
-            </h2>
+            <SplitHeading
+              id="hire-heading"
+              as="h2"
+              className="display-lg mt-6"
+              text="All-inclusive, or entirely your own"
+            />
           </div>
-          <p className="lg:col-span-4 lg:col-start-9">
+          <p className="lead lg:col-span-4 lg:col-start-9">
             Two ways to hire the hall. Every proposal is tailored to your date, guest numbers and occasion, so please
             enquire for pricing.
           </p>
@@ -124,9 +138,20 @@ function HireOptions() {
 
         <RevealGroup className="mt-14 grid gap-6 lg:mt-20 lg:grid-cols-2">
           {hireOptions.map((option) => (
-            <RevealItem key={option.id} as="article" className="flex flex-col border border-hairline bg-ivory">
-              <SmartImage image={hireImages[option.id]} useThumb className="aspect-[16/9]" />
-              <div className="flex flex-1 flex-col p-8 sm:p-12">
+            <RevealItem
+              key={option.id}
+              as="article"
+              className="card-surface group flex flex-col overflow-hidden hover:-translate-y-1.5"
+            >
+              <div className="overflow-hidden p-3 pb-0">
+                <SmartImage
+                  image={hireImages[option.id]}
+                  useThumb
+                  className="aspect-[16/10] rounded-[7px]"
+                  imgClassName="group-hover:scale-105"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-7 sm:p-10">
                 <p className="eyebrow text-olive">{option.eyebrow}</p>
                 <h3 className="display-md mt-4">{option.title}</h3>
                 <p className="mt-5">{option.summary}</p>
@@ -172,15 +197,18 @@ function DecorTiers() {
   const [activeId, setActiveId] = useState<TierId>("diamond");
 
   return (
-    <section id="decor" aria-labelledby="decor-heading" className="section-pad scroll-mt-20">
+    <section id="decor" data-ambient-tone="sage-mist" aria-labelledby="decor-heading" className="section-pad scroll-mt-20">
       <div className="container-site">
         <Reveal className="mx-auto max-w-3xl text-center">
           <Eyebrow rule={false} className="justify-center">
             Signature Décor
           </Eyebrow>
-          <h2 id="decor-heading" className="display-lg mt-6">
-            Three curated tiers of transformation
-          </h2>
+          <SplitHeading
+            id="decor-heading"
+            as="h2"
+            className="display-lg mt-6"
+            text="Three curated tiers of transformation"
+          />
           <p className="lead mx-auto mt-6 max-w-2xl">
             Each package is styled by our in-house décor team and refined with you in consultation. Request the lookbook
             and a bespoke quote for your date.
@@ -198,25 +226,36 @@ function DecorTiers() {
                   data-active={active}
                   onMouseEnter={() => setActiveId(tier.id)}
                   onFocus={() => setActiveId(tier.id)}
-                  className={`group relative flex w-full flex-col border bg-ivory transition-[transform,box-shadow,border-color] duration-slow ease-editorial ${
+                  className={`group relative flex w-full flex-col overflow-hidden rounded-card border bg-ivory/90 backdrop-blur-[2px] transition-all duration-base ease-editorial ${
                     active
-                      ? "border-gold shadow-[0_30px_60px_-30px_rgba(43,51,25,0.45)] lg:-translate-y-3"
-                      : "border-hairline"
+                      ? "border-gold bg-ivory shadow-[0_32px_64px_-30px_rgba(43,51,25,0.42)] lg:-translate-y-2.5"
+                      : "border-hairline hover:border-gold/60"
                   }`}
                 >
                   <span aria-hidden="true" className={`absolute inset-x-0 top-0 z-10 h-1 ${style.bar}`} />
-                  <SmartImage
-                    image={style.image}
-                    useThumb
-                    className="aspect-[4/3]"
-                    imgClassName={active ? "scale-105" : "scale-100"}
-                  />
-                  <div className="flex flex-1 flex-col p-8 sm:p-10">
+                  <div className="overflow-hidden">
+                    <SmartImage
+                      image={style.image}
+                      useThumb
+                      className="aspect-[4/3]"
+                      imgClassName={active ? "scale-105" : "scale-100 group-hover:scale-105"}
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-7 sm:p-9">
                     <div className="flex items-center justify-between">
-                      <p className="font-sans text-[0.6875rem] font-semibold tracking-[0.2em] text-gold">
+                      <p className="font-condensed-label text-xs font-semibold uppercase tracking-[0.18em] text-gold">
                         Tier 0{index + 1}
                       </p>
-                      <Icon size={24} strokeWidth={1} className={style.iconColor} aria-hidden="true" />
+                      <span
+                        aria-hidden="true"
+                        className={`grid h-10 w-10 place-items-center rounded-full border transition-all duration-base ease-editorial ${
+                          active
+                            ? "border-olive-deep bg-olive-deep text-gold-champagne"
+                            : "border-hairline text-olive"
+                        }`}
+                      >
+                        <Icon size={18} strokeWidth={1.35} />
+                      </span>
                     </div>
                     <h3 className="display-md mt-6">{tier.name}</h3>
                     <p className="eyebrow mt-3 text-olive">{tier.character}</p>
@@ -255,26 +294,47 @@ function DecorTiers() {
 
 function Culinary() {
   return (
-    <section id="catering" aria-labelledby="catering-heading" className="section-pad scroll-mt-20 bg-olive-deep text-ivory">
-      <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-16">
+    <section
+      id="catering"
+      aria-labelledby="catering-heading"
+      className="surface-grain-dark section-pad scroll-mt-20 bg-olive-deep text-ivory"
+    >
+      <div className="container-site relative z-10 grid gap-14 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-6">
           <Eyebrow tone="light">Culinary Excellence</Eyebrow>
-          <h2 id="catering-heading" className="display-lg mt-6 text-ivory">
-            Catering by Kashas Events
-          </h2>
+          <SplitHeading
+            id="catering-heading"
+            as="h2"
+            className="display-lg mt-6 text-ivory"
+            text="Catering by Kashas Events"
+          />
           <p className="lead mt-6 max-w-xl text-ivory/85">{group.kashasEvents.description}</p>
 
-          <div className="mt-9 flex items-center gap-5 border-y border-hairline-gold py-6">
-            <ShieldCheck size={36} strokeWidth={1} className="shrink-0 text-gold" aria-hidden="true" />
+          <div className="mt-9 flex items-center gap-5 rounded-card border border-hairline-gold bg-olive/25 p-5 sm:p-6">
+            <ShieldCheck size={34} strokeWidth={1.2} className="shrink-0 text-gold" aria-hidden="true" />
             <div>
-              <p className="font-display text-3xl leading-none text-ivory">5 / 5 Food Hygiene Rating</p>
+              <p className="font-condensed text-3xl leading-none text-ivory">5 / 5 Food Hygiene Rating</p>
               <p className="mt-2 text-sm text-ivory/70">Officially rated “Very Good” by Havering Council</p>
             </div>
           </div>
 
           <div className="mt-10 grid grid-cols-2 gap-4">
-            <SmartImage image={media.catering} useThumb className="aspect-[4/5] rounded-media !bg-olive" />
-            <SmartImage image={media.cateringChaat} useThumb className="mt-10 aspect-[4/5] rounded-media !bg-olive" />
+            <div className="group overflow-hidden rounded-card">
+              <SmartImage
+                image={media.catering}
+                useThumb
+                className="aspect-[4/5] rounded-card !bg-olive"
+                imgClassName="group-hover:scale-105"
+              />
+            </div>
+            <div className="group mt-10 overflow-hidden rounded-card">
+              <SmartImage
+                image={media.cateringChaat}
+                useThumb
+                className="aspect-[4/5] rounded-card !bg-olive"
+                imgClassName="group-hover:scale-105"
+              />
+            </div>
           </div>
 
           <ArrowLink href={group.kashasEvents.url} external tone="light" className="mt-10">
@@ -294,12 +354,12 @@ function Culinary() {
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <Button
               href={venue.menuPdf}
-              download
+              download={venue.menuDownloadName}
               size="lg"
               icon={<Download size={15} strokeWidth={1.5} />}
               iconPosition="left"
             >
-              Download Full Menu PDF
+              Download Catering Menu
             </Button>
             <Button to={`${routes.enquire}?package=catering`} variant="outlineLight" size="lg">
               Enquire About Catering
@@ -321,34 +381,35 @@ const addOnIcons: Record<(typeof addOns)[number]["id"], LucideIcon> = {
 
 function AddOns() {
   return (
-    <section id="add-ons" aria-labelledby="addons-heading" className="section-pad scroll-mt-20">
+    <section id="add-ons" data-ambient-tone="champagne" aria-labelledby="addons-heading" className="section-pad scroll-mt-20">
       <div className="container-site">
         <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <Eyebrow>Bespoke Optional Add-Ons</Eyebrow>
-            <h2 id="addons-heading" className="display-lg mt-6">
-              The finishing touches
-            </h2>
+            <SplitHeading id="addons-heading" as="h2" className="display-lg mt-6" text="The finishing touches" />
           </div>
-          <p className="lg:col-span-4 lg:col-start-9">
+          <p className="lead lg:col-span-4 lg:col-start-9">
             Add any of these to your booking. All are available on enquiry and quoted as part of your proposal.
           </p>
         </Reveal>
 
-        <RevealGroup as="ul" className="mt-14 grid border-t border-hairline sm:grid-cols-2 lg:mt-20 lg:grid-cols-5">
-          {addOns.map((addOn, index) => {
+        <RevealGroup as="ul" className="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-20 lg:grid-cols-5">
+          {addOns.map((addOn) => {
             const Icon = addOnIcons[addOn.id];
             return (
               <RevealItem
                 as="li"
                 key={addOn.id}
-                className={`border-b border-hairline py-9 lg:border-b-0 lg:px-7 lg:first:pl-0 lg:last:pr-0 ${
-                  index % 2 === 1 ? "sm:border-l sm:pl-8 lg:pl-7" : "sm:pr-8 lg:pr-7"
-                } ${index > 0 ? "lg:border-l" : ""}`}
+                className="card-surface group flex flex-col p-6 hover:-translate-y-1.5 sm:p-7"
               >
-                <Icon size={28} strokeWidth={1} className="text-gold" aria-hidden="true" />
-                <h3 className="mt-6 font-display text-2xl font-medium leading-tight text-ink">{addOn.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed">{addOn.text}</p>
+                <span
+                  aria-hidden="true"
+                  className="grid h-11 w-11 place-items-center rounded-full border border-olive/30 bg-stone/50 text-olive transition-all duration-base ease-editorial group-hover:border-olive-deep group-hover:bg-olive-deep group-hover:text-gold-champagne"
+                >
+                  <Icon size={20} strokeWidth={1.35} />
+                </span>
+                <h3 className="font-condensed mt-6 text-[1.625rem] leading-[1.06] text-ink">{addOn.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate">{addOn.text}</p>
               </RevealItem>
             );
           })}
@@ -373,7 +434,7 @@ export default function EventsPackages() {
         eyebrow="Events & Packages"
         title={
           <>
-            Tailored Hospitality, <em className="font-normal italic text-gold-champagne">Seamless</em> Execution
+            Tailored Hospitality, <em className="text-gold-champagne">Seamless</em> Execution
           </>
         }
         intro="Weddings, private celebrations and corporate occasions, each hosted with the same composure. Choose an all-inclusive package, a signature décor tier or a blank canvas."
