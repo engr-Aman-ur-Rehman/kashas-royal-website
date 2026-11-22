@@ -44,7 +44,7 @@ const eventImages: Record<EventTypeId, MediaImage> = {
 
 function EventExperiences() {
   return (
-    <section aria-labelledby="experiences-heading" className="section-pad">
+    <section data-ambient-tone="ivory" aria-labelledby="experiences-heading" className="section-pad">
       <div className="container-site">
         <Reveal className="max-w-3xl">
           <Eyebrow>Event Experiences</Eyebrow>
@@ -94,7 +94,7 @@ function EventExperiences() {
                     {event.occasions.map((occasion) => (
                       <li
                         key={occasion}
-                        className="font-condensed-label rounded-full border border-hairline bg-stone/50 px-3.5 py-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-ink transition-colors duration-base ease-editorial hover:border-olive-deep hover:bg-olive-deep hover:text-ivory"
+                        className="font-condensed-label rounded-full border border-hairline bg-ivory/65 px-3.5 py-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-ink transition-colors duration-base ease-editorial hover:border-olive-deep hover:bg-olive-deep hover:text-ivory"
                       >
                         {occasion}
                       </li>
@@ -118,7 +118,7 @@ const hireImages = { "wedding-full": media.weddingPackage, "dry-hire": media.dry
 /** Modelled on 8 Northumberland Avenue's `.two-column-cta`: 10px card frames with 1.05x hover zoom. */
 function HireOptions() {
   return (
-    <section id="hire-options" aria-labelledby="hire-heading" className="section-pad scroll-mt-20 bg-stone">
+    <section id="hire-options" data-ambient-tone="warm-stone" aria-labelledby="hire-heading" className="section-pad scroll-mt-20">
       <div className="container-site">
         <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
@@ -197,7 +197,7 @@ function DecorTiers() {
   const [activeId, setActiveId] = useState<TierId>("diamond");
 
   return (
-    <section id="decor" aria-labelledby="decor-heading" className="section-pad scroll-mt-20">
+    <section id="decor" data-ambient-tone="sage-mist" aria-labelledby="decor-heading" className="section-pad scroll-mt-20">
       <div className="container-site">
         <Reveal className="mx-auto max-w-3xl text-center">
           <Eyebrow rule={false} className="justify-center">
@@ -226,9 +226,9 @@ function DecorTiers() {
                   data-active={active}
                   onMouseEnter={() => setActiveId(tier.id)}
                   onFocus={() => setActiveId(tier.id)}
-                  className={`group relative flex w-full flex-col overflow-hidden rounded-card border bg-ivory transition-all duration-base ease-editorial ${
+                  className={`group relative flex w-full flex-col overflow-hidden rounded-card border bg-ivory/90 backdrop-blur-[2px] transition-all duration-base ease-editorial ${
                     active
-                      ? "border-gold shadow-[0_32px_64px_-30px_rgba(43,51,25,0.42)] lg:-translate-y-2.5"
+                      ? "border-gold bg-ivory shadow-[0_32px_64px_-30px_rgba(43,51,25,0.42)] lg:-translate-y-2.5"
                       : "border-hairline hover:border-gold/60"
                   }`}
                 >
@@ -294,8 +294,12 @@ function DecorTiers() {
 
 function Culinary() {
   return (
-    <section id="catering" aria-labelledby="catering-heading" className="section-pad scroll-mt-20 bg-olive-deep text-ivory">
-      <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-16">
+    <section
+      id="catering"
+      aria-labelledby="catering-heading"
+      className="surface-grain-dark section-pad scroll-mt-20 bg-olive-deep text-ivory"
+    >
+      <div className="container-site relative z-10 grid gap-14 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-6">
           <Eyebrow tone="light">Culinary Excellence</Eyebrow>
           <SplitHeading
@@ -377,7 +381,7 @@ const addOnIcons: Record<(typeof addOns)[number]["id"], LucideIcon> = {
 
 function AddOns() {
   return (
-    <section id="add-ons" aria-labelledby="addons-heading" className="section-pad scroll-mt-20">
+    <section id="add-ons" data-ambient-tone="champagne" aria-labelledby="addons-heading" className="section-pad scroll-mt-20">
       <div className="container-site">
         <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">

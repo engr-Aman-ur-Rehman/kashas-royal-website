@@ -73,12 +73,12 @@ export default function Header() {
           shouldHide ? "-translate-y-[120%]" : "translate-y-0"
         } ${
           scrolled
-            ? "border-b border-hairline-gold bg-olive-deep/95 shadow-[0_14px_40px_-20px_rgba(0,0,0,0.65)] backdrop-blur-md"
+            ? "surface-grain-dark border-b border-hairline-gold bg-olive-deep/95 shadow-[0_14px_40px_-20px_rgba(0,0,0,0.65)] backdrop-blur-md"
             : "border-b border-transparent bg-gradient-to-b from-ink/65 to-transparent hover:bg-olive-deep/90"
         }`}
       >
         <div
-          className={`container-site flex items-center justify-between gap-6 transition-[height] duration-base ease-editorial ${
+          className={`container-site relative z-10 flex items-center justify-between gap-6 transition-[height] duration-base ease-editorial ${
             scrolled ? "h-[4.25rem]" : "h-[4.75rem] lg:h-[5.5rem]"
           }`}
         >

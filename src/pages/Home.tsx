@@ -103,7 +103,7 @@ function Hero() {
 
 function ValuePillars() {
   return (
-    <section id="pillars" aria-labelledby="pillars-heading" className="section-pad">
+    <section id="pillars" data-ambient-tone="ivory" aria-labelledby="pillars-heading" className="section-pad">
       <div className="container-site">
         <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
@@ -154,7 +154,7 @@ function ValuePillars() {
 
 function HallFeature() {
   return (
-    <section aria-labelledby="hall-heading" className="section-pad bg-stone">
+    <section data-ambient-tone="warm-stone" aria-labelledby="hall-heading" className="section-pad">
       <div className="container-site grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
         <div className="relative lg:col-span-7">
           <Reveal variant="editorial" className="group overflow-hidden rounded-card">
@@ -167,7 +167,7 @@ function HallFeature() {
           <Reveal
             variant="editorial"
             delay={0.2}
-            className="group absolute -bottom-10 right-4 hidden w-[38%] overflow-hidden rounded-card border-[6px] border-stone shadow-[0_24px_48px_-24px_rgba(26,28,22,0.35)] sm:block lg:-right-10"
+            className="group absolute -bottom-10 right-4 hidden w-[38%] overflow-hidden rounded-card border-[6px] border-[color:var(--ambient-bg)] shadow-[0_24px_48px_-24px_rgba(26,28,22,0.35)] transition-[border-color] duration-[1400ms] ease-editorial sm:block lg:-right-10"
           >
             <SmartImage
               image={media.hallLighting}
@@ -220,7 +220,7 @@ function EventsShowcase() {
   const active = eventTypes.find((event) => event.id === activeId) ?? eventTypes[0];
 
   return (
-    <section aria-labelledby="events-heading" className="section-pad">
+    <section data-ambient-tone="sage-mist" aria-labelledby="events-heading" className="section-pad">
       <div className="container-site">
         <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div>
@@ -250,7 +250,7 @@ function EventsShowcase() {
               className="overflow-hidden border-b border-hairline"
               tabClassName={(isActive) =>
                 `group flex w-full items-baseline border-t border-hairline py-5 text-left transition-colors duration-base ease-editorial ${
-                  isActive ? "text-ink" : "text-slate/55 hover:text-ink"
+                  isActive ? "text-ink" : "text-ink/55 hover:text-ink"
                 }`
               }
               renderTab={(tab, isActive) => (
@@ -358,7 +358,7 @@ function PackagesPreview() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
-    <section aria-labelledby="packages-heading" className="section-pad bg-stone">
+    <section data-ambient-tone="champagne" aria-labelledby="packages-heading" className="section-pad">
       <div className="container-site">
         <Reveal className="max-w-3xl">
           <Eyebrow>Packages &amp; Services</Eyebrow>
@@ -399,7 +399,7 @@ function PackagesPreview() {
                     imgClassName="group-hover:scale-105"
                   />
 
-                  {/* Resting bottom scrim so the condensed light title always reads cleanly */}
+                  {/* Resting bottom scrim so the bold condensed title always reads cleanly */}
                   <div
                     aria-hidden="true"
                     className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/35 to-ink/10 transition-opacity duration-base ease-editorial lg:group-hover:opacity-0"
@@ -470,21 +470,21 @@ function MenuBanner() {
   const frameScale = useTransform(scrollYProgress, [0, 1], [0.965, 1]);
 
   return (
-    <section aria-labelledby="menu-banner-heading" className="section-pad">
+    <section data-ambient-tone="olive-mist" aria-labelledby="menu-banner-heading" className="section-pad">
       <div className="container-site">
         <motion.div
           ref={bannerRef}
           style={reduceMotion ? undefined : { scale: frameScale }}
-          className="grid overflow-hidden rounded-card bg-olive-deep will-change-transform lg:grid-cols-2"
+          className="surface-grain-dark grid overflow-hidden rounded-card bg-olive-deep will-change-transform lg:grid-cols-2"
         >
-          <div className="group relative overflow-hidden">
+          <div className="group relative z-10 overflow-hidden">
             <SmartImage
               image={media.catering}
               className="aspect-[4/3] h-full !bg-olive lg:aspect-auto lg:min-h-[38rem]"
               imgClassName="group-hover:scale-105"
             />
           </div>
-          <div className="flex flex-col justify-center p-8 sm:p-14 lg:p-16 xl:p-20">
+          <div className="relative z-10 flex flex-col justify-center p-8 sm:p-14 lg:p-16 xl:p-20">
             <Eyebrow tone="light">Sample Menu &amp; Brochure</Eyebrow>
             <SplitHeading
               id="menu-banner-heading"
@@ -539,7 +539,7 @@ function MenuBanner() {
 
 function TrustAndReviews() {
   return (
-    <section aria-labelledby="trust-heading" className="section-pad bg-stone">
+    <section data-ambient-tone="warm-sand" aria-labelledby="trust-heading" className="section-pad">
       <div className="container-site">
         <Reveal>
           <Eyebrow>Trusted &amp; Reviewed</Eyebrow>
@@ -566,7 +566,7 @@ const visitFacts = [
 
 function VisitSnapshot() {
   return (
-    <section aria-labelledby="visit-snapshot-heading" className="section-pad bg-stone">
+    <section data-ambient-tone="sage-mist" aria-labelledby="visit-snapshot-heading" className="section-pad">
       <div className="container-site grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-6">
           <Eyebrow>Visit Us</Eyebrow>

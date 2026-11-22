@@ -45,7 +45,7 @@ export default function Accordion({ items, defaultOpenId, headingLevel: Heading 
                 className="group flex w-full items-center justify-between gap-6 py-7 text-left"
               >
                 <span
-                  className={`font-sans font-body-width text-[1.0625rem] font-normal leading-[1.35] transition-colors duration-base ease-editorial sm:text-[1.25rem] ${
+                  className={`font-sans font-body-width text-[1.0625rem] font-medium leading-[1.35] transition-colors duration-base ease-editorial sm:text-[1.25rem] ${
                     isOpen ? "text-olive-deep" : "text-ink group-hover:text-olive"
                   }`}
                 >

@@ -19,10 +19,10 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-olive-deep text-ivory">
+    <footer className="surface-grain-dark bg-olive-deep text-ivory">
       <PreFooterCta />
 
-      <div className="container-site">
+      <div className="container-site relative z-10">
         <div className="hairline-t-gold grid gap-x-10 gap-y-14 py-16 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_1.15fr_1.15fr] lg:py-20">
           {/* 1. Brand */}
           <div>

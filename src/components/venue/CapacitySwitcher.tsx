@@ -78,7 +78,7 @@ export default function CapacitySwitcher() {
                   >
                     →
                   </span>
-                  <span className="font-condensed-label whitespace-nowrap text-[0.8125rem] font-semibold uppercase tracking-[0.12em] lg:font-condensed lg:text-[2.125rem] lg:font-light lg:normal-case lg:leading-none lg:tracking-normal">
+                  <span className="font-condensed-label whitespace-nowrap text-[0.8125rem] font-semibold uppercase tracking-[0.12em] lg:font-condensed lg:text-[2.125rem] lg:font-semibold lg:normal-case lg:leading-none lg:tracking-normal">
                     {tab.label}
                   </span>
                 </span>

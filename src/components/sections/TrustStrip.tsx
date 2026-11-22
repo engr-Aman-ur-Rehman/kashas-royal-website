@@ -18,7 +18,7 @@ export default function TrustStrip({ tone = "light" }: { tone?: "light" | "dark"
             className={`group flex items-center gap-5 rounded-card border p-6 transition-all duration-base ease-editorial hover:-translate-y-1 sm:p-8 ${
               dark
                 ? "border-hairline-gold bg-olive/30 hover:border-gold-champagne/70 hover:bg-olive/45"
-                : "border-hairline bg-ivory hover:border-gold/75 hover:shadow-[0_24px_48px_-28px_rgb(var(--color-olive-deep)/0.28)]"
+                : "border-hairline bg-ivory/85 backdrop-blur-[2px] hover:border-gold/75 hover:bg-ivory/95 hover:shadow-[0_24px_48px_-28px_rgb(var(--color-olive-deep)/0.28)]"
             }`}
           >
             <span

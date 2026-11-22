@@ -33,6 +33,8 @@ export default function PageHero({ eyebrow, title, intro, image, compact = false
     <section
       ref={sectionRef}
       className={`relative isolate flex items-end overflow-hidden bg-olive-deep ${
+        !image ? "surface-grain-dark" : ""
+      } ${
         compact ? "min-h-[26rem] lg:min-h-[30rem]" : "min-h-[32rem] sm:min-h-[38rem] lg:min-h-[76svh]"
       }`}
     >
@@ -58,7 +60,7 @@ export default function PageHero({ eyebrow, title, intro, image, compact = false
       )}
 
       <motion.div
-        className="container-site pb-14 pt-40 sm:pb-16 lg:pb-24"
+        className="container-site relative z-10 pb-14 pt-40 sm:pb-16 lg:pb-24"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"

@@ -8,7 +8,7 @@ import { Reveal } from "@/components/ui/Reveal";
 /** Home page FAQ preview modelled on 8 Northumberland Avenue's `.accordion-block`. */
 export default function FaqPreview() {
   return (
-    <section aria-labelledby="faq-preview-heading" className="section-pad">
+    <section data-ambient-tone="ivory" aria-labelledby="faq-preview-heading" className="section-pad">
       <div className="container-site">
         <div className="grid gap-12 border-t border-hairline pt-12 lg:grid-cols-12 lg:gap-16 lg:pt-16">
           <Reveal className="lg:col-span-5">

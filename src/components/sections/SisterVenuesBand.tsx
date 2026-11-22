@@ -33,7 +33,7 @@ export default function SisterVenuesBand({ variant = "band" }: SisterVenuesBandP
   }
 
   return (
-    <section aria-labelledby="sister-venues-heading" className="section-pad bg-stone">
+    <section data-ambient-tone="warm-sand" aria-labelledby="sister-venues-heading" className="section-pad">
       <div className="container-site grid gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-6">
           <Eyebrow>Our Sister Venues · {group.sisterVenues.location}</Eyebrow>

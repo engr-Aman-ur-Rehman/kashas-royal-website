@@ -26,7 +26,7 @@ export default function Enquire() {
       />
 
       {/* Split layout: reassurance and contact details beside the enquiry form */}
-      <section aria-label="Make an enquiry" className="section-pad">
+      <section data-ambient-tone="ivory" aria-label="Make an enquiry" className="section-pad">
         <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
@@ -37,7 +37,7 @@ export default function Enquire() {
 
               <a
                 href={venue.phone.href}
-                className="card-surface group mt-10 flex items-center gap-5 bg-stone/60 p-6 hover:-translate-y-1"
+                className="card-surface group mt-10 flex items-center gap-5 p-6 hover:-translate-y-1"
               >
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-olive-deep text-gold-champagne transition-all duration-base ease-editorial group-hover:scale-105 group-hover:bg-gold group-hover:text-ink">
                   <Phone size={18} strokeWidth={1.5} aria-hidden="true" />
@@ -97,7 +97,7 @@ export default function Enquire() {
       </section>
 
       {/* Full FAQ accordion, grouped by policy area */}
-      <section id="faqs" aria-labelledby="faqs-heading" className="section-pad scroll-mt-16 bg-stone">
+      <section id="faqs" data-ambient-tone="olive-mist" aria-labelledby="faqs-heading" className="section-pad scroll-mt-16">
         <div className="container-site grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">

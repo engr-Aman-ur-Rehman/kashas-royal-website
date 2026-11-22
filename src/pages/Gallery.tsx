@@ -47,7 +47,7 @@ export default function Gallery() {
         image={media.galleryHero}
       />
 
-      <section aria-label="Photo gallery" className="section-pad">
+      <section data-ambient-tone="warm-stone" aria-label="Photo gallery" className="section-pad">
         <div className="container-site">
           <div className="flex flex-col gap-5 border-b border-hairline sm:flex-row sm:items-end sm:justify-between">
             <TabList

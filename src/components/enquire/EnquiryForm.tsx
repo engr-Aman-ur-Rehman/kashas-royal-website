@@ -255,7 +255,7 @@ export default function EnquiryForm() {
   };
 
   return (
-    <div className="rounded-card border border-hairline bg-stone/50 p-6 sm:p-10 lg:p-12">
+    <div className="rounded-card border border-hairline bg-ivory/80 p-6 backdrop-blur-[2px] sm:p-10 lg:p-12">
       <AnimatePresence mode="wait" initial={false}>
         {status === "success" && submitted ? (
           <motion.div

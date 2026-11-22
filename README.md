@@ -81,9 +81,10 @@ The favicon files are `public/favicon.png` and `public/apple-touch-icon.png`.
 **Fonts** are set in two places:
 
 - `index.html`: the Google Fonts `<link>` loads the `Bricolage Grotesque` variable family (`opsz`, `wdth`, `wght`).
-- `src/index.css`: `--font-display` (Condensed Light `wdth: 75`, `wght: 280`) and `--font-sans` (`Bricolage Grotesque` Regular/Medium) at the top of the file.
+- `src/index.css`: `--font-display` (bold condensed `wdth: 78–80`, `wght: 600–650`) and `--font-sans` (`Bricolage Grotesque` Regular/Medium) at the top of the file, plus `.ambient-canvas-grain` and `.surface-grain-dark` tactile paper/film grain utilities backed by `public/images/grain-light.webp` and `public/images/grain-dark.webp`.
+- `src/config/ambientTones.ts` & `src/components/layout/AmbientCanvas.tsx`: scroll-reactive background tones that smoothly shift across Editorial Ivory, Warm Stone, Soft Sage-Olive Mist, Champagne Linen and Botanical Mist as you scroll between sections.
 
-Change both together. Brand colours, card radii (`10px`) and transition timings (`300ms` / `500ms` / `900ms` / `1200ms`) are in the same block of `src/index.css`.
+Change fonts in both `index.html` and `src/index.css` together. Brand colours, card radii (`10px`) and transition timings (`300ms` / `500ms` / `900ms` / `1200ms`) are in the same block of `src/index.css`.
 
 **Transitions** are in `src/config/motion.ts` (GSAP `circ.out` 1.2s word reveals, `0.5s ease-in-out` card/hover glides, `0.05s` word stagger), with desktop smooth wheel scrolling via Lenis in `src/hooks/useSmoothScroll.ts`. Hover transitions on links, cards and buttons use `--ease-editorial`, `--duration-fast`, `--duration-base` and `--duration-slow` in `src/index.css`. Visitors who have "reduce motion" switched on in their device settings automatically get a calmer version.
 

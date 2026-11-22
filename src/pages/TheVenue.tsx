@@ -52,7 +52,7 @@ function WalkthroughParallaxCta() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
-    <section ref={sectionRef} aria-labelledby="walkthrough-heading" className="bg-ivory py-12 sm:py-16 lg:py-20">
+    <section ref={sectionRef} data-ambient-tone="warm-sand" aria-labelledby="walkthrough-heading" className="py-12 sm:py-16 lg:py-20">
       <div className="container-site">
         <motion.div
           style={reduceMotion ? undefined : { scale: frameScale }}
@@ -117,7 +117,7 @@ export default function TheVenue() {
       />
 
       {/* Capacity and layout switcher */}
-      <section id="capacities" aria-labelledby="capacities-heading" className="section-pad scroll-mt-20">
+      <section id="capacities" data-ambient-tone="ivory" aria-labelledby="capacities-heading" className="section-pad scroll-mt-20">
         <div className="container-site">
           <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-7">
@@ -141,7 +141,7 @@ export default function TheVenue() {
       </section>
 
       {/* Spaces and facilities */}
-      <section aria-labelledby="spaces-heading" className="section-pad bg-stone">
+      <section data-ambient-tone="sage-mist" aria-labelledby="spaces-heading" className="section-pad">
         <div className="container-site">
           <Reveal>
             <Eyebrow>Spaces &amp; Facilities</Eyebrow>
@@ -230,7 +230,7 @@ export default function TheVenue() {
       </section>
 
       {/* Specifications */}
-      <section aria-labelledby="specs-heading" className="section-pad">
+      <section data-ambient-tone="champagne" aria-labelledby="specs-heading" className="section-pad">
         <div className="container-site grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">

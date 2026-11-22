@@ -32,7 +32,7 @@ export default function VisitUs() {
       />
 
       {/* Address and map */}
-      <section aria-labelledby="find-us-heading" className="section-pad">
+      <section data-ambient-tone="ivory" aria-labelledby="find-us-heading" className="section-pad">
         <div className="container-site grid items-stretch gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="flex flex-col justify-center lg:col-span-5">
             <Eyebrow>Find Us</Eyebrow>
@@ -105,7 +105,7 @@ export default function VisitUs() {
       </section>
 
       {/* Travel and transport */}
-      <section aria-labelledby="travel-heading" className="section-pad bg-stone">
+      <section data-ambient-tone="sage-mist" aria-labelledby="travel-heading" className="section-pad">
         <div className="container-site">
           <Reveal className="max-w-3xl">
             <Eyebrow>Travel &amp; Transport</Eyebrow>
@@ -143,7 +143,7 @@ export default function VisitUs() {
       </section>
 
       {/* Opening hours and viewings */}
-      <section aria-labelledby="hours-heading" className="section-pad">
+      <section data-ambient-tone="champagne" aria-labelledby="hours-heading" className="section-pad">
         <div className="container-site grid gap-14 lg:grid-cols-2 lg:gap-0">
           <Reveal className="lg:border-r lg:border-hairline lg:pr-16">
             <Eyebrow>Opening Hours</Eyebrow>
@@ -198,7 +198,7 @@ export default function VisitUs() {
       </section>
 
       {/* Sister venues */}
-      <section aria-label="Our sister venues" className="bg-stone py-16 sm:py-20">
+      <section data-ambient-tone="warm-sand" aria-label="Our sister venues" className="py-16 sm:py-20">
         <div className="container-site">
           <SisterVenuesBand variant="card" />
         </div>

@@ -40,6 +40,7 @@
   --radius-card: 10px;
   --radius-media: 10px;
   --header-height: 4.75rem;
+  --ambient-bg: #F8F6F0;
 }
 
 @layer base {
@@ -47,6 +48,8 @@
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: calc(var(--header-height) + 1.5rem);
     overflow-x: clip;
+    background-color: var(--ambient-bg);
+    transition: background-color 1400ms var(--ease-editorial);
   }
 
   /* Lenis smooth scroll integration (mirrors 8northumberland.co.uk) */
@@ -72,7 +75,8 @@
   }
 
   body {
-    @apply relative bg-ivory font-sans text-slate antialiased;
+    @apply relative font-sans text-slate antialiased;
+    background-color: var(--ambient-bg);
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.55;
@@ -81,37 +85,25 @@
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
     font-feature-settings: "lnum" 1, "kern" 1;
-    transition: background-color var(--duration-base) var(--ease-editorial),
+    transition: background-color 1400ms var(--ease-editorial),
       color var(--duration-base) var(--ease-editorial);
   }
 
-  /* Subtle tactile architectural noise grain overlay (echoing 8na body:after) */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 60;
-    pointer-events: none;
-    opacity: 0.035;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  }
-
-  /* Condensed Light display typography (exact Bricolage Grotesque wdth 75, wght 280) */
+  /* Bold condensed display typography inspired by 8northumberland.co.uk */
   h1,
   h2,
   h3,
   h4,
   h5 {
     @apply font-display text-ink;
-    font-weight: 280;
-    font-stretch: 75%;
-    font-variation-settings: "opsz" 96, "wdth" 75, "wght" 280;
+    font-weight: 650;
+    font-stretch: 78%;
+    font-variation-settings: "opsz" 96, "wdth" 78, "wght" 650;
     font-optical-sizing: auto;
     text-wrap: balance;
   }
 
-  /* Bricolage Grotesque has no italic cut; keep emphasised display words crisp & upright */
+  /* Bricolage Grotesque has no italic cut; keep emphasised display words bold & crisp */
   h1 em,
   h2 em,
   h3 em,
@@ -121,8 +113,8 @@
   .display-md em,
   .display-sm em {
     font-style: normal;
-    font-weight: 300;
-    font-variation-settings: "opsz" 96, "wdth" 75, "wght" 300;
+    font-weight: 700;
+    font-variation-settings: "opsz" 96, "wdth" 78, "wght" 700;
   }
 
   p {
@@ -151,6 +143,40 @@
 }
 
 @layer components {
+  /* Full-viewport scroll-reactive grainy paper canvas (mirroring 8na body + body:after) */
+  .ambient-canvas {
+    transition: background-color 1400ms var(--ease-editorial);
+  }
+
+  .ambient-canvas-wash {
+    transition: opacity 1400ms var(--ease-editorial);
+  }
+
+  .ambient-canvas-grain {
+    background-image: url("/images/grain-light.webp");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.52;
+  }
+
+  /* Velvety tactile grain for deep heritage olive bands & sticky surfaces */
+  .surface-grain-dark {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .surface-grain-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("/images/grain-dark.webp");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.64;
+  }
+
   .container-site {
     @apply mx-auto w-full max-w-site px-5 sm:px-8 lg:px-12;
   }
@@ -167,8 +193,9 @@
   }
 
   .font-condensed {
-    font-stretch: 75%;
-    font-variation-settings: "opsz" 96, "wdth" 75, "wght" 280;
+    font-weight: 600;
+    font-stretch: 80%;
+    font-variation-settings: "opsz" 72, "wdth" 80, "wght" 600;
     font-optical-sizing: auto;
   }
 
@@ -179,53 +206,54 @@
   }
 
   .font-body-width {
+    font-weight: 500;
     font-stretch: 100%;
-    font-variation-settings: "opsz" 20, "wdth" 100, "wght" 400;
+    font-variation-settings: "opsz" 20, "wdth" 100, "wght" 500;
     font-optical-sizing: auto;
   }
 
-  /* Fluid condensed display scale modelled directly on 8northumberland.co.uk */
+  /* Fluid bold condensed display scale modelled on 8northumberland.co.uk */
   .display-xl {
     @apply font-display;
     font-size: clamp(3.125rem, 2.15rem + 4.1vw, 6.25rem);
-    font-weight: 280;
-    font-stretch: 75%;
-    font-variation-settings: "opsz" 96, "wdth" 75, "wght" 280;
+    font-weight: 650;
+    font-stretch: 78%;
+    font-variation-settings: "opsz" 96, "wdth" 78, "wght" 650;
     font-optical-sizing: auto;
-    line-height: 0.92;
-    letter-spacing: -0.015em;
+    line-height: 0.96;
+    letter-spacing: -0.006em;
   }
 
   .display-lg {
     @apply font-display;
     font-size: clamp(2.5rem, 1.85rem + 2.6vw, 4.75rem);
-    font-weight: 280;
-    font-stretch: 75%;
-    font-variation-settings: "opsz" 96, "wdth" 75, "wght" 280;
+    font-weight: 650;
+    font-stretch: 78%;
+    font-variation-settings: "opsz" 96, "wdth" 78, "wght" 650;
     font-optical-sizing: auto;
-    line-height: 0.94;
-    letter-spacing: -0.01em;
+    line-height: 0.98;
+    letter-spacing: -0.005em;
   }
 
   .display-md {
     @apply font-display;
     font-size: clamp(2rem, 1.55rem + 1.75vw, 3.625rem);
-    font-weight: 280;
-    font-stretch: 75%;
-    font-variation-settings: "opsz" 72, "wdth" 75, "wght" 280;
+    font-weight: 620;
+    font-stretch: 80%;
+    font-variation-settings: "opsz" 72, "wdth" 80, "wght" 620;
     font-optical-sizing: auto;
-    line-height: 0.96;
-    letter-spacing: -0.01em;
+    line-height: 1;
+    letter-spacing: -0.004em;
   }
 
   .display-sm {
     @apply font-display;
     font-size: clamp(1.625rem, 1.35rem + 1vw, 2.5rem);
-    font-weight: 280;
-    font-stretch: 75%;
-    font-variation-settings: "opsz" 48, "wdth" 75, "wght" 280;
+    font-weight: 600;
+    font-stretch: 80%;
+    font-variation-settings: "opsz" 48, "wdth" 80, "wght" 600;
     font-optical-sizing: auto;
-    line-height: 1.02;
+    line-height: 1.04;
   }
 
   .lead {
@@ -256,9 +284,9 @@
     background-size: 0 1.5px, 100% 1.5px;
   }
 
-  /* Shared 8na 10px editorial card surface with smooth elevation & border transition */
+  /* Shared 8na 10px editorial card surface seated softly over the grainy canvas */
   .card-surface {
-    @apply rounded-card border border-hairline bg-ivory;
+    @apply rounded-card border border-hairline bg-ivory/85 backdrop-blur-[2px];
     transition: transform var(--duration-base) var(--ease-editorial),
       border-color var(--duration-base) var(--ease-editorial),
       box-shadow var(--duration-base) var(--ease-editorial),
@@ -266,6 +294,7 @@
   }
 
   .card-surface:hover {
+    @apply bg-ivory/95;
     border-color: rgb(var(--color-gold) / 0.7);
     box-shadow: 0 24px 48px -28px rgb(var(--color-olive-deep) / 0.28);
   }

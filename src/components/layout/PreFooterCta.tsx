@@ -7,12 +7,12 @@ import { Reveal } from "@/components/ui/Reveal";
 /** Closing call-to-action band shown above the footer on every page. */
 export default function PreFooterCta() {
   return (
-    <section aria-labelledby="prefooter-heading" className="relative overflow-hidden bg-olive-deep">
+    <section aria-labelledby="prefooter-heading" className="surface-grain-dark relative overflow-hidden bg-olive-deep">
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-20%,rgb(var(--color-olive)/0.92),transparent_65%)]"
       />
-      <Reveal className="container-site relative py-24 text-center sm:py-28 lg:py-36">
+      <Reveal className="container-site relative z-10 py-24 text-center sm:py-28 lg:py-36">
         <p className="eyebrow text-gold-champagne">Begin the Conversation</p>
         <SplitHeading
           id="prefooter-heading"
