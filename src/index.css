@@ -12,6 +12,7 @@
 :root {
   --font-display: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-sans: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-signature: "Beau Rivage", "Brush Script MT", cursive;
 
   --color-olive: 79 91 49; /* #4F5B31 Royal Olive */
   --color-olive-deep: 43 51 25; /* #2B3319 Deep Heritage Olive */
@@ -210,6 +211,24 @@
     font-stretch: 100%;
     font-variation-settings: "opsz" 20, "wdth" 100, "wght" 500;
     font-optical-sizing: auto;
+  }
+
+  /* Modern handwritten luxury brand signature for Kashas Royal */
+  .font-signature {
+    font-family: var(--font-signature);
+    font-weight: 400;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    letter-spacing: 0.015em;
+  }
+
+  .brand-wordmark {
+    background-image: linear-gradient(180deg, #fffbf0 0%, #f3de9f 54%, #cfa242 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35));
   }
 
   /* Fluid bold condensed display scale modelled on 8northumberland.co.uk */

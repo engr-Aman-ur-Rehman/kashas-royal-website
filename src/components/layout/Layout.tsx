@@ -8,7 +8,6 @@ import FloatingEnquireButton from "./FloatingEnquireButton";
 import MobileStickyBar from "./MobileStickyBar";
 import PrivacyModal from "./PrivacyModal";
 import ScrollManager from "./ScrollManager";
-import { LogoKeyFilter } from "@/components/ui/Logo";
 
 export default function Layout() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
@@ -24,7 +23,6 @@ export default function Layout() {
         >
           Skip to content
         </a>
-        <LogoKeyFilter />
         <ScrollManager />
         <Header />
         <main id="main" tabIndex={-1} className="relative z-0 outline-none">

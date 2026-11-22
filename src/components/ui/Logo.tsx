@@ -1,96 +1,54 @@
 import { venue } from "@/data/venueData";
 
-/** The owner's logo file. Replace the file itself to update the logo everywhere. */
-export const LOGO_SRC = "/images/kashas-royal-logo.jpg";
-
-const KEY_FILTER_ID = "logo-gold-key";
-
-/**
- * Colour-key filter for the logo artwork. The logo is a JPG with its own olive
- * backdrop; this filter makes that backdrop transparent (it keeps pixels that
- * are more red than green, i.e. the gold) so the gold artwork sits directly on
- * any surface. Rendered once by the Layout.
- *
- * If a future logo file has a different background, tune the last row of the
- * matrix, or pass `keyed={false}` to the logo components to show it as-is.
- */
-export function LogoKeyFilter() {
-  return (
-    <svg width="0" height="0" className="pointer-events-none absolute" aria-hidden="true" focusable="false">
-      <defs>
-        <filter id={KEY_FILTER_ID} colorInterpolationFilters="sRGB" x="0" y="0" width="100%" height="100%">
-          <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  12 -12 0 0 -0.2" />
-        </filter>
-      </defs>
-    </svg>
-  );
-}
-
-const keyStyle = { filter: `url(#${KEY_FILTER_ID})` } as const;
-
-/*
- * Crop values that show only the KR crest from the 1200×889 logo artwork, and
- * a clip that trims away the tops of the "Kashas Royal" lettering, which sit
- * either side of the crest's lower finial. Adjust both if a differently
- * proportioned logo file is supplied.
- */
-const crestCrop = { width: "207%", left: "-53.5%", top: "2%" } as const;
-const crestClip = {
-  clipPath: "polygon(0 0, 100% 0, 100% 87.8%, 55.5% 87.8%, 55.5% 94.2%, 45.2% 94.2%, 45.2% 87.8%, 0 87.8%)",
-} as const;
+/** Transparent golden brand assets derived from the Kashas Royal emblem logo. */
+export const LOGO_SRC = "/images/kashas-royal-logo.png";
+export const LOGO_CREST_SRC = "/images/kashas-royal-crest.png";
+export const LOGO_FLOURISH_SRC = "/images/kashas-royal-flourish.png";
 
 interface LogoCrestProps {
-  /** Tailwind width class, e.g. "w-11". Height follows the 4:5 crest proportion. */
+  /** Tailwind width class, e.g. "w-11". Height follows the crest's natural proportion. */
   className?: string;
 }
 
-function CrestArt() {
-  return (
-    <span className="absolute inset-0 block" style={crestClip}>
-      <img
-        src={LOGO_SRC}
-        alt=""
-        aria-hidden="true"
-        draggable={false}
-        className="absolute max-w-none select-none"
-        style={{ ...crestCrop, ...keyStyle }}
-      />
-    </span>
-  );
-}
-
-/** The gold KR crest on its own, for dark olive surfaces (header, mobile menu). */
+/** The transparent sculpted gold KR emblem crest on its own (header, mobile menu, badges). */
 export function LogoCrest({ className = "w-11" }: LogoCrestProps) {
   return (
-    <span className={`relative block aspect-[4/5] shrink-0 overflow-hidden ${className}`}>
-      <CrestArt />
-    </span>
+    <img
+      src={LOGO_CREST_SRC}
+      alt=""
+      aria-hidden="true"
+      width={473}
+      height={576}
+      draggable={false}
+      className={`block h-auto shrink-0 select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] ${className}`}
+    />
   );
 }
 
-/** The gold KR crest on a deep olive tile with a crisp gold frame, for light surfaces. */
+/** The gold KR crest framed on a deep heritage olive tile with a crisp gold border, for light surfaces. */
 export function LogoEmblem({ className = "w-16" }: LogoCrestProps) {
   return (
     <span
-      className={`relative block aspect-[4/5] shrink-0 overflow-hidden rounded-[2px] bg-olive-deep shadow-[0_0_0_1px_rgb(var(--color-gold)),0_0_0_5px_rgb(var(--color-ivory)),0_0_0_6px_rgba(79,91,49,0.3)] ${className}`}
+      className={`relative grid aspect-[4/5] shrink-0 place-items-center overflow-hidden rounded-[2px] bg-olive-deep p-[11%] shadow-[0_0_0_1px_rgb(var(--color-gold)),0_0_0_5px_rgb(var(--color-ivory)),0_0_0_6px_rgba(79,91,49,0.3)] ${className}`}
     >
-      <span className="absolute inset-[9%] block">
-        <CrestArt />
-      </span>
+      <LogoCrest className="w-full" />
     </span>
   );
 }
 
-/** Header lockup: gold crest beside the venue name, for dark surfaces. */
+/**
+ * Header & mobile-menu lockup: sculpted transparent gold KR crest paired with
+ * the modern handwritten `Beau Rivage` Kashas Royal signature wordmark.
+ */
 export function LogoLockup({ className = "" }: { className?: string }) {
   return (
-    <span className={`flex items-center gap-3 ${className}`}>
-      <LogoCrest className="w-10 sm:w-11" />
+    <span className={`group/logo inline-flex items-center gap-3 ${className}`}>
+      <LogoCrest className="w-10 transition-transform duration-base ease-editorial group-hover/logo:scale-[1.04] sm:w-11" />
       <span className="flex flex-col leading-none">
-        <span className="font-display text-[1.375rem] font-medium tracking-[0.04em] text-ivory sm:text-2xl">
+        <span className="brand-wordmark font-signature pb-0.5 pr-1.5 text-[1.95rem] leading-[0.94] sm:text-[2.3rem]">
           {venue.name}
         </span>
-        <span className="mt-1.5 hidden font-sans text-[0.5625rem] font-medium uppercase tracking-[0.28em] text-gold-champagne sm:block lg:hidden xl:block">
+        <span className="mt-1 hidden font-sans text-[0.5625rem] font-medium uppercase tracking-[0.28em] text-gold-champagne/90 sm:block lg:hidden xl:block">
           {venue.tagline}
         </span>
       </span>
@@ -100,21 +58,35 @@ export function LogoLockup({ className = "" }: { className?: string }) {
 
 interface LogoFullProps {
   className?: string;
-  /** Set false to show the logo file untouched, on its own background. */
-  keyed?: boolean;
 }
 
-/** The complete logo artwork: crest, wordmark and tagline. */
-export function LogoFull({ className = "w-64", keyed = true }: LogoFullProps) {
+/**
+ * Stacked footer lockup: transparent gold KR emblem crest above the modern
+ * handwritten `Beau Rivage` Kashas Royal signature wordmark, tagline, and
+ * matching golden ornamental flourish.
+ */
+export function LogoFull({ className = "" }: LogoFullProps) {
   return (
-    <img
-      src={LOGO_SRC}
-      alt={`${venue.name} — ${venue.tagline}`}
-      width={1200}
-      height={889}
-      draggable={false}
-      className={`block h-auto select-none ${className}`}
-      style={keyed ? keyStyle : undefined}
-    />
+    <div
+      className={`inline-flex flex-col items-center text-center ${className}`}
+      aria-label={`${venue.name} — ${venue.tagline}`}
+    >
+      <LogoCrest className="w-24 sm:w-[6.75rem]" />
+      <span className="brand-wordmark font-signature mt-2.5 pb-1 pr-2 text-[2.65rem] leading-[0.95] sm:text-[3rem]">
+        {venue.name}
+      </span>
+      <span className="mt-1 font-sans text-[0.625rem] font-medium uppercase tracking-[0.3em] text-gold-champagne/90">
+        {venue.tagline}
+      </span>
+      <img
+        src={LOGO_FLOURISH_SRC}
+        alt=""
+        aria-hidden="true"
+        width={502}
+        height={60}
+        draggable={false}
+        className="mt-3 block h-auto w-44 select-none opacity-95 drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)]"
+      />
+    </div>
   );
 }

@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="hairline-t-gold grid gap-x-10 gap-y-14 py-16 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_1.15fr_1.15fr] lg:py-20">
           {/* 1. Brand */}
           <div>
-            <LogoFull className="-ml-9 -mt-2 w-60" />
+            <LogoFull className="-mt-1" />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-ivory/75">
               A premier banqueting and event venue in Romford.
             </p>
@@ -143,7 +143,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="hairline-t-gold flex flex-col gap-3 py-7 pb-24 text-xs tracking-wide text-ivory/55 sm:flex-row sm:items-center sm:justify-between lg:pb-7">
+        <div className="hairline-t-gold flex flex-col gap-3 py-7 pb-24 text-xs tracking-wide text-ivory/55 sm:flex-row sm:items-center sm:justify-between lg:pb-7 xl:pr-28 2xl:pr-32">
           <p>
             © {year} {venue.name}. All rights reserved.
           </p>
